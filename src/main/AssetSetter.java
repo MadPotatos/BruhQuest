@@ -62,6 +62,10 @@ public class AssetSetter {
         gp.obj[mapNum][i].worldX = gp.tileSize * 20;
         gp.obj[mapNum][i].worldY = gp.tileSize * 4;
         i++;
+        gp.obj[mapNum][i] = new Coin(gp);
+        gp.obj[mapNum][i].worldX = gp.tileSize * 10;
+        gp.obj[mapNum][i].worldY = gp.tileSize * 10;
+        i++;
 
     }
 
@@ -84,8 +88,8 @@ public class AssetSetter {
     public void setMonster() {
         int mapNum = 0;
         gp.monster[mapNum][8] = new Boss_GiantFlam(gp);
-        gp.monster[mapNum][8].worldX = gp.tileSize * 20;
-        gp.monster[mapNum][8].worldY = gp.tileSize * 7;
+        gp.monster[mapNum][8].worldX = gp.tileSize * 10;
+        gp.monster[mapNum][8].worldY = gp.tileSize * 8;
 
         gp.monster[mapNum][0] = new Slime(gp);
         gp.monster[mapNum][0].worldX = gp.tileSize * 12;

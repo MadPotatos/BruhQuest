@@ -39,7 +39,10 @@ public class LoadSave {
 	// PROJECTILE
 	public static final String PROTILE_ENERGYBALL = "/projectile/energyball.png";
 	public static final String PROTILE_SURIKEN = "/projectile/shuriken.png";
-
+	//OBJECT
+	//COIN
+	public static final String COIN = "/Objects/Coin2.png";
+	
 	// UI
 
 	public static final BufferedImage KB_A = setup("/ui/a", 16, 16);

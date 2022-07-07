@@ -47,7 +47,7 @@ public class UI {
         this.gp = gp;
 
         try {
-            InputStream is = getClass().getResourceAsStream("/Font/determination.ttf");
+            InputStream is = getClass().getResourceAsStream("/Font/determination.otf");
             MineCraft = Font.createFont(Font.TRUETYPE_FONT, is);
         } catch (FontFormatException e) {
             e.printStackTrace();
