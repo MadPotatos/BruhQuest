@@ -345,7 +345,7 @@ public abstract class Entity {
 		}
 		///////////////////
 
-		if (type == LoadSave.TYPE_MONSTER || type == LoadSave.TYPE_NPC || type == LoadSave.TYPE_PROJECTTILE) {
+		if (type == LoadSave.TYPE_MONSTER || type == LoadSave.TYPE_NPC || type == LoadSave.TYPE_PROJECTTILE||getName() == "Coin") {
 			switch (direction) {
 				case "up":
 					image = animations[1][aniIndex];
@@ -369,9 +369,15 @@ public abstract class Entity {
 		// Monster HP bar
 		if (type == LoadSave.TYPE_MONSTER && hpBarOn == true) {
 			double oneScale = (double) gp.tileSize / maxLife;
+			int hpBarwidth = gp.tileSize;
+			
+			if(getName() == "GiantFlam" ) {
+				hpBarwidth = 2* gp.tileSize+2;
+				oneScale = (double) 2*gp.tileSize / maxLife;
+			}
 			double hpBarValue = oneScale * life;
 			g2.setColor(new Color(35, 35, 35));
-			g2.fillRect(screenX - 1, screenY - 16, gp.tileSize + 2, 12);
+			g2.fillRect(screenX - 1, screenY - 16, hpBarwidth + 2, 12);
 			g2.setColor(new Color(255, 0, 30));
 			g2.fillRect(screenX, screenY - 15, (int) hpBarValue, 10);
 			hpBarCounter++;

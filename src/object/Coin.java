@@ -1,7 +1,10 @@
 package object;
 
+import java.awt.image.BufferedImage;
+
 import entity.Entity;
 import main.GamePanel;
+import main.UtilityTool;
 import utilz.LoadSave;
 
 public class Coin extends Item {
@@ -13,10 +16,21 @@ public class Coin extends Item {
         setType(LoadSave.TYPE_PICKUPONLY);
         setName("Coin");
         setValue(1);
-        down1 = LoadSave.setup("/Objects/coin", gp.tileSize / 3, gp.tileSize / 3);
-        setImage(LoadSave.setup("/Objects/coin", gp.tileSize, gp.tileSize));
-
+        setAniSpeed(4);
+        loadAnimations();
     }
+    public void loadAnimations() {
+        BufferedImage imgWalk = LoadSave.GetSpriteAtlas(LoadSave.COIN);
+        UtilityTool uTool = new UtilityTool();
+        BufferedImage[][] animations = new BufferedImage[4][4];
+        for (int j = 0; j < animations.length; j++) {
+            for (int i = 0; i < animations[j].length; i++) {
+                animations[j][i] = imgWalk.getSubimage(i * 10, 0, 10, 10);
+                animations[j][i] = uTool.scaleImage(animations[j][i],gp.tileSize/2,gp.tileSize/2);
+            }
+        }
+        setAnimations(animations);
+    }    
 
     public boolean use(Entity entity) {
         gp.playSE(1);

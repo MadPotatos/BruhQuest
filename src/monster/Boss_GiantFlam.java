@@ -21,8 +21,18 @@ public class Boss_GiantFlam extends Monster {
         attack = 2;
         defense = 0;
         exp = 290;
-        solidArea.width = 32;
-        solidArea.height = 32;
+//        solidArea.x = 3;
+//        solidArea.y = 18;
+//        solidAreaDefaultX = solidArea.x;
+//        solidAreaDefaultY = solidArea.y;        
+//        solidArea.width = 32;
+//        solidArea.height = 32;
+		solidArea.x = 3;
+		solidArea.y = 18;
+		solidArea.width = 60;
+		solidArea.height = 60;
+		solidAreaDefaultX = solidArea.x;
+		solidAreaDefaultY = solidArea.y;
         loadAnimations();
 
     }
@@ -34,7 +44,7 @@ public class Boss_GiantFlam extends Monster {
         for (int j = 0; j < animations.length; j++) {
             for (int i = 0; i < animations[j].length; i++) {
                 animations[j][i] = imgWalk.getSubimage(i * 50, 0, 50, 50);
-                animations[j][i] = uTool.scaleImage(animations[j][i], 3 * gp.tileSize, 3 * gp.tileSize);
+                animations[j][i] = uTool.scaleImage(animations[j][i], 2 * gp.tileSize, 2 * gp.tileSize);
             }
         }
         setAnimations(animations);
