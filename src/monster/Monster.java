@@ -21,6 +21,17 @@ public abstract class Monster extends Entity implements Behavior {
 
     }
 
+    public void update() {
+        super.update();
+        int xDistance = Math.abs(worldX - gp.player.worldX);
+        int yDistance = Math.abs(worldY - gp.player.worldY);
+        int tileDistance = (int) (Math.sqrt(xDistance * xDistance + yDistance *
+                yDistance) / gp.tileSize);
+        if (onPath == true && tileDistance > 10) {
+            onPath = false;
+        }
+    }
+
     public void dropItem(Item droppedItem) {
         for (int i = 0; i < gp.obj[1].length; i++) {
             if (gp.obj[gp.currentMap][i] == null) {
