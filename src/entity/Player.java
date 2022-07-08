@@ -51,8 +51,8 @@ public class Player extends Entity {
 	}
 
 	public void setDefaultPositions() {
-		worldX = gp.tileSize * 11;
-		worldY = gp.tileSize * 11;
+		worldX = gp.tileSize * 24;
+		worldY = gp.tileSize * 44;
 
 	}
 

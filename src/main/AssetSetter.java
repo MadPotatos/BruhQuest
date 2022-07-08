@@ -15,6 +15,8 @@ import object.Key;
 import object.Mana;
 import object.SteelShield;
 import tile_interactive.BreakableStone;
+import tile_interactive.Gate;
+import tile_interactive.Stair;
 
 public class AssetSetter {
     private GamePanel gp;
@@ -60,7 +62,7 @@ public class AssetSetter {
 
         gp.obj[mapNum][i] = new Chest(gp, new Key(gp));
         gp.obj[mapNum][i].worldX = gp.tileSize * 20;
-        gp.obj[mapNum][i].worldY = gp.tileSize * 4;
+        gp.obj[mapNum][i].worldY = gp.tileSize * 43;
         i++;
         gp.obj[mapNum][i] = new Coin(gp);
         gp.obj[mapNum][i].worldX = gp.tileSize * 10;
@@ -124,19 +126,10 @@ public class AssetSetter {
     public void setInteractiveTile() {
         int mapNum = 0;
         int i = 0;
-        gp.iTile[mapNum][i] = new BreakableStone(gp, 6, 26);
+
+        gp.iTile[mapNum][i] = new Gate(gp, 22, 9);
         i++;
-        gp.iTile[mapNum][i] = new BreakableStone(gp, 7, 26);
-        i++;
-        gp.iTile[mapNum][i] = new BreakableStone(gp, 8, 26);
-        i++;
-        gp.iTile[mapNum][i] = new BreakableStone(gp, 9, 26);
-        i++;
-        gp.iTile[mapNum][i] = new BreakableStone(gp, 10, 26);
-        i++;
-        gp.iTile[mapNum][i] = new BreakableStone(gp, 12, 11);
-        i++;
-        gp.iTile[mapNum][i] = new BreakableStone(gp, 7, 8);
+        gp.iTile[mapNum][i] = new Stair(gp, 23, 12);
         i++;
 
     }

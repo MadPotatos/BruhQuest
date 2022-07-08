@@ -1,9 +1,11 @@
 package monster;
 
 import java.awt.image.BufferedImage;
+import java.util.Random;
 
 import main.GamePanel;
 import main.UtilityTool;
+import object.Key;
 import utilz.LoadSave;
 
 public class Boss_GiantFlam extends Monster {
@@ -21,18 +23,12 @@ public class Boss_GiantFlam extends Monster {
         attack = 2;
         defense = 0;
         exp = 290;
-//        solidArea.x = 3;
-//        solidArea.y = 18;
-//        solidAreaDefaultX = solidArea.x;
-//        solidAreaDefaultY = solidArea.y;        
-//        solidArea.width = 32;
-//        solidArea.height = 32;
-		solidArea.x = 3;
-		solidArea.y = 18;
-		solidArea.width = 60;
-		solidArea.height = 60;
-		solidAreaDefaultX = solidArea.x;
-		solidAreaDefaultY = solidArea.y;
+        solidArea.x = 3;
+        solidArea.y = 18;
+        solidArea.width = 60;
+        solidArea.height = 60;
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
         loadAnimations();
 
     }
@@ -48,6 +44,50 @@ public class Boss_GiantFlam extends Monster {
             }
         }
         setAnimations(animations);
+    }
+
+    @Override
+    public void damageReaction() {
+        gp.playSE(15);
+        setActionLockCounter(0);
+        onPath = true;
+
+    }
+
+    @Override
+    public void checkDrop() {
+
+        dropItem(new Key(gp));
+
+    }
+
+    public void setAction() {
+        if (onPath == true) {
+            int goalCol = (gp.player.worldX + gp.player.solidArea.x) / gp.tileSize;
+            int goalRow = (gp.player.worldY + gp.player.solidArea.y) / gp.tileSize;
+            searchPath(goalCol, goalRow);
+
+        } else {
+            setActionLockCounter(getActionLockCounter() + 1);
+            if (getActionLockCounter() == 120) {
+                Random random = new Random();
+                int i = random.nextInt(100) + 1;
+                if (i < 25) {
+                    direction = "up";
+                }
+                if (i > 25 && i < 50) {
+                    direction = "down";
+                }
+                if (i > 50 && i < 75) {
+                    direction = "left";
+                }
+                if (i > 75) {
+                    direction = "right";
+                }
+                setActionLockCounter(0);
+            }
+        }
+
     }
 
 }

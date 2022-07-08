@@ -3,7 +3,9 @@ package monster;
 import java.util.Random;
 
 import main.GamePanel;
-
+import object.Coin;
+import object.Heart;
+import object.Mana;
 import object.Rock;
 import utilz.LoadSave;
 
@@ -66,6 +68,30 @@ public class Mole extends Monster {
             }
 
         }
+    }
+
+    @Override
+    public void damageReaction() {
+        gp.playSE(15);
+        setActionLockCounter(0);
+        onPath = true;
+
+    }
+
+    @Override
+    public void checkDrop() {
+        int i = new Random().nextInt(100) + 1;
+        // Set monster drop
+        if (i < 50) {
+            dropItem(new Coin(gp));
+        }
+        if (i > 50 && i < 75) {
+            dropItem(new Heart(gp));
+        }
+        if (i > 75) {
+            dropItem(new Mana(gp));
+        }
+
     }
 
 }

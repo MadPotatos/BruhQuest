@@ -18,7 +18,9 @@ public class Coin extends Item {
         setValue(1);
         setAniSpeed(4);
         loadAnimations();
+        setImage(LoadSave.setup("/Objects/coin", gp.tileSize, gp.tileSize));
     }
+
     public void loadAnimations() {
         BufferedImage imgWalk = LoadSave.GetSpriteAtlas(LoadSave.COIN);
         UtilityTool uTool = new UtilityTool();
@@ -26,11 +28,11 @@ public class Coin extends Item {
         for (int j = 0; j < animations.length; j++) {
             for (int i = 0; i < animations[j].length; i++) {
                 animations[j][i] = imgWalk.getSubimage(i * 10, 0, 10, 10);
-                animations[j][i] = uTool.scaleImage(animations[j][i],gp.tileSize/2,gp.tileSize/2);
+                animations[j][i] = uTool.scaleImage(animations[j][i], gp.tileSize / 2, gp.tileSize / 2);
             }
         }
         setAnimations(animations);
-    }    
+    }
 
     public boolean use(Entity entity) {
         gp.playSE(1);
