@@ -51,6 +51,7 @@ public class Player extends Entity {
 	}
 
 	public void setDefaultPositions() {
+		gp.currentMap = 0;
 		worldX = gp.tileSize * 24;
 		worldY = gp.tileSize * 44;
 
@@ -312,11 +313,7 @@ public class Player extends Entity {
 			gp.iTile[gp.currentMap][i].playSE();
 			gp.iTile[gp.currentMap][i].life--;
 			gp.iTile[gp.currentMap][i].invincible = true;
-			// Generate particle
-			generateParticle(gp.iTile[gp.currentMap][i], gp.iTile[gp.currentMap][i]);
-			if (gp.iTile[gp.currentMap][i].life == 0) {
-				gp.iTile[gp.currentMap][i] = gp.iTile[gp.currentMap][i].getDestroyedForm();
-			}
+
 		}
 	}
 
@@ -542,7 +539,6 @@ public class Player extends Entity {
 			tempScreenX = worldX - (screenX - tempScreenX);
 		if (screenY > worldY)
 			tempScreenY = worldY - (screenY - tempScreenY);
-
 		int rightOffset = gp.screenWidth - screenX;
 		if (rightOffset > gp.worldWidth - worldX) {
 			tempScreenX = (gp.screenWidth - (gp.worldWidth - worldX)) - (screenX - tempScreenX);

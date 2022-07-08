@@ -21,7 +21,7 @@ public class TileManager {
         mapTileNum = new int[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow];
         getTileImage();
         loadMap("/Maps/map01.txt", 0);
-        loadMap("/Maps/store1.txt", 1);
+        loadMap("/Maps/dungeon.txt", 1);
     }
 
     public void getTileImage() {
@@ -58,6 +58,9 @@ public class TileManager {
         setup(37, "wall6", true);
         setup(38, "wall7", true);
         setup(39, "wall8", true);
+        setup(40, "light", false);
+        setup(41, "dirt", false);
+        setup(42, "block", true);
     }
 
     public void setup(int index, String imageName, boolean collision) {

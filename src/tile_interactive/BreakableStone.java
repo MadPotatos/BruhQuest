@@ -38,24 +38,4 @@ public class BreakableStone extends InteractiveTile {
         return tile;
     }
 
-    public Color getParticleColor() {
-        Color color = new Color(215, 142, 99);
-        return color;
-    }
-
-    public int getParticleSize() {
-        int size = 5;
-        return size;
-    }
-
-    public int getParticleSpeed() {
-        int speed = 1;
-        return speed;
-    }
-
-    public int getParticleMaxLife() {
-        int maxLife = 20;
-        return maxLife;
-    }
-
 }

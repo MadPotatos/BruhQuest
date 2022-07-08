@@ -1,14 +1,12 @@
 package object;
 
-import java.awt.Color;
-
 import entity.Entity;
 import entity.Projectile;
 import main.GamePanel;
 import utilz.LoadSave;
 
-public class Shuriken extends Projectile{
-	private GamePanel gp;
+public class Shuriken extends Projectile {
+    private GamePanel gp;
 
     public Shuriken(GamePanel gp) {
         super(gp);
@@ -25,8 +23,6 @@ public class Shuriken extends Projectile{
         loadAnimations(LoadSave.PROTILE_SURIKEN);
     }
 
-
-
     public boolean haveResource(Entity user) {
         boolean haveResource = false;
         if (user.mana >= getUseCost()) {
@@ -37,25 +33,5 @@ public class Shuriken extends Projectile{
 
     public void subtractResource(Entity user) {
         user.mana -= getUseCost();
-    }
-
-    public Color getParticleColor() {
-        Color color = new Color(87, 175, 252);
-        return color;
-    }
-
-    public int getParticleSize() {
-        int size = 10;
-        return size;
-    }
-
-    public int getParticleSpeed() {
-        int speed = 1;
-        return speed;
-    }
-
-    public int getParticleMaxLife() {
-        int maxLife = 20;
-        return maxLife;
     }
 }

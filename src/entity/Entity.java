@@ -201,23 +201,6 @@ public abstract class Entity {
 		return false;
 	}
 
-	public void generateParticle(Entity generator, Entity target) {
-		Color color = generator.getParticleColor();
-		int size = generator.getParticleSize();
-		int speed = generator.getParticleSpeed();
-		int maxLife = generator.getParticleMaxLife();
-
-		Particle p1 = new Particle(gp, target, color, size, speed, maxLife, -2, -1);
-		Particle p2 = new Particle(gp, target, color, size, speed, maxLife, 2, -1);
-		Particle p3 = new Particle(gp, target, color, size, speed, maxLife, -2, 1);
-		Particle p4 = new Particle(gp, target, color, size, speed, maxLife, 2, 1);
-		gp.particleList.add(p1);
-		gp.particleList.add(p2);
-		gp.particleList.add(p3);
-		gp.particleList.add(p4);
-
-	}
-
 	public void checkCollision() {
 		collisionOn = false;
 		gp.cChecker.checkTile(this);
@@ -345,7 +328,8 @@ public abstract class Entity {
 		}
 		///////////////////
 
-		if (type == LoadSave.TYPE_MONSTER || type == LoadSave.TYPE_NPC || type == LoadSave.TYPE_PROJECTTILE||getName() == "Coin") {
+		if (type == LoadSave.TYPE_MONSTER || type == LoadSave.TYPE_NPC || type == LoadSave.TYPE_PROJECTTILE
+				|| getName() == "Coin") {
 			switch (direction) {
 				case "up":
 					image = animations[1][aniIndex];
@@ -370,10 +354,10 @@ public abstract class Entity {
 		if (type == LoadSave.TYPE_MONSTER && hpBarOn == true) {
 			double oneScale = (double) gp.tileSize / maxLife;
 			int hpBarwidth = gp.tileSize;
-			
-			if(getName() == "GiantFlam" ) {
-				hpBarwidth = 2* gp.tileSize+2;
-				oneScale = (double) 2*gp.tileSize / maxLife;
+
+			if (getName() == "GiantFlam") {
+				hpBarwidth = 2 * gp.tileSize + 2;
+				oneScale = (double) 2 * gp.tileSize / maxLife;
 			}
 			double hpBarValue = oneScale * life;
 			g2.setColor(new Color(35, 35, 35));
@@ -456,26 +440,6 @@ public abstract class Entity {
 
 	private void changeAlpha(Graphics2D g2, float alphaValue) {
 		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alphaValue));
-	}
-
-	private Color getParticleColor() {
-		Color color = null;
-		return color;
-	}
-
-	private int getParticleSize() {
-		int size = 0;
-		return size;
-	}
-
-	private int getParticleSpeed() {
-		int speed = 0;
-		return speed;
-	}
-
-	private int getParticleMaxLife() {
-		int maxLife = 0;
-		return maxLife;
 	}
 
 	// Getter and Setter

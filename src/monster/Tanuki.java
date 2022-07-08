@@ -49,7 +49,7 @@ public class Tanuki extends Monster {
 
     @Override
     public void damageReaction() {
-        gp.playSE(15);
+
         setActionLockCounter(0);
         onPath = true;
 

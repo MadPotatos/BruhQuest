@@ -9,7 +9,7 @@ import object.Key;
 import utilz.LoadSave;
 
 public class Boss_GiantFlam extends Monster {
-    private GamePanel gp;
+    GamePanel gp;
 
     public Boss_GiantFlam(GamePanel gp) {
         super(gp);
@@ -48,7 +48,7 @@ public class Boss_GiantFlam extends Monster {
 
     @Override
     public void damageReaction() {
-        gp.playSE(15);
+
         setActionLockCounter(0);
         onPath = true;
 
