@@ -12,7 +12,6 @@ public class Tanuki extends Monster {
     public Tanuki(GamePanel gp) {
         super(gp);
         this.gp = gp;
-        // TODO Auto-generated constructor stub
 
         setName("Tanuki");
         defaultSpeed = 2;
