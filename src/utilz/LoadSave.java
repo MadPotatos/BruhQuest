@@ -28,6 +28,7 @@ public class LoadSave {
 	public static final String MONSTER_MOLE = "/monsters/mole/Mole.png";
 	public static final String MONSTER_SLIME = "/monsters/slime/Slime.png";
 	public static final String MONSTER_TANUKI = "/monsters/tanuki/Tanuki.png";
+	public static final String MONSTER_FLAM = "/monsters/flam/Flam.png";
 
 	// BOSS
 	public static final String BOSS_GIANTFLAM = "/monsters/boss/GaintFlam.png";
@@ -35,14 +36,15 @@ public class LoadSave {
 	// NPC
 	public static final String NPC_OLDMAN = "/NPC/oldman/Oldman.png";
 	public static final String NPC_MERCHANT = "/NPC/merchant/Merchant.png";
+	public static final String NPC_NINJA = "/NPC/ninja/Ninja.png";
 
 	// PROJECTILE
 	public static final String PROTILE_ENERGYBALL = "/projectile/energyball.png";
 	public static final String PROTILE_SURIKEN = "/projectile/shuriken.png";
-	//OBJECT
-	//COIN
+	// OBJECT
+	// COIN
 	public static final String COIN = "/Objects/Coin2.png";
-	
+
 	// UI
 
 	public static final BufferedImage KB_A = setup("/ui/a", 16, 16);

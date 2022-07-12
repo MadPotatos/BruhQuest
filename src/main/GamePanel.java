@@ -16,10 +16,10 @@ import javax.swing.JPanel;
 import ai.PathFinder;
 import entity.Entity;
 import entity.Player;
-import monster.Monster;
-import object.Item;
+import entity.item.Item;
+import entity.monster.Monster;
+import entity.tile_interactive.InteractiveTile;
 import tile.TileManager;
-import tile_interactive.InteractiveTile;
 
 public class GamePanel extends JPanel implements Runnable {
 
@@ -79,6 +79,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int loadingState = 6;
     public final int tradingState = 7;
     public final int informState = 8;
+    public final int winState = 9;
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));

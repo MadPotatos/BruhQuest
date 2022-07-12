@@ -3,16 +3,17 @@ package entity;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+
+import entity.item.HealingPotion;
+import entity.item.Item;
+import entity.item.Key;
+import entity.item.weapon.BeginnerSword;
+import entity.item.weapon.WoodenShield;
+import entity.projectile.Shuriken;
+
 import java.awt.AlphaComposite;
 import main.GamePanel;
 import main.KeyHandler;
-import object.BeginnerSword;
-import object.HealingPotion;
-import object.Item;
-import object.Key;
-import object.Shuriken;
-import object.WoodenShield;
-
 import utilz.LoadSave;
 
 public class Player extends Entity {
@@ -313,8 +314,12 @@ public class Player extends Entity {
 			gp.iTile[gp.currentMap][i].playSE();
 			gp.iTile[gp.currentMap][i].life--;
 			gp.iTile[gp.currentMap][i].invincible = true;
+			if (gp.iTile[gp.currentMap][i].life == 0) {
+				gp.iTile[gp.currentMap][i] = gp.iTile[gp.currentMap][i].getDestroyedForm();
+			}
 
 		}
+
 	}
 
 	public void damageMonster(int i, int attack, int knockBackPower) {
