@@ -11,13 +11,13 @@ import entity.item.Item;
 import entity.item.Mana;
 import main.GamePanel;
 
+public class Playing implements Statemethods {
+    private GamePanel gp;
+    BufferedImage heart_full, heart_half, heart_empty, mana_full, mana_empty;
 
-public class Playing implements Statemethods{
-	private GamePanel gp;
-	BufferedImage heart_full, heart_half, heart_empty, mana_full, mana_empty;
-//	ArrayList<String> message = new ArrayList<String>();
-//	ArrayList<Integer> messageCounter = new ArrayList<Integer>();
-	public Playing(GamePanel gp) {
+//    ArrayList<String> message = new ArrayList<String>();
+//    ArrayList<Integer> messageCounter = new ArrayList<Integer>();
+    public Playing(GamePanel gp) {
         this.gp = gp;
         Item heart = new Heart(gp);
         heart_full = heart.getImage();
@@ -26,14 +26,16 @@ public class Playing implements Statemethods{
         Item mana = new Mana(gp);
         mana_full = mana.getImage();
         mana_empty = mana.getImage2();
-        
+
     }
-	@Override
-	public void draw(Graphics2D g2) {
-		// TODO Auto-generated method stub
-		drawPlayerLife(g2);
-		//drawMessage(g2);
-	}
+
+    @Override
+    public void draw(Graphics2D g2) {
+        // TODO Auto-generated method stub
+        drawPlayerLife(g2);
+        // drawMessage(g2);
+    }
+
     private void drawPlayerLife(Graphics2D g2) {
 
         int x = gp.tileSize / 2;
@@ -107,6 +109,5 @@ public class Playing implements Statemethods{
 //            }
 //        }
 //    }
-
 
 }

@@ -21,6 +21,7 @@ public class Inform implements Statemethods{
 		drawPopUpMessage(g2);
 	}
 	public void drawPopUpMessage(Graphics2D g2) {
+		this.currentDialogue = gp.ui.currentDialogue;
 		// WINDOW
         int x = gp.tileSize * 3;
         int y = gp.tileSize / 2;

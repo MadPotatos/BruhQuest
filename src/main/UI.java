@@ -17,6 +17,7 @@ import entity.Entity;
 import entity.item.*;
 import gamestates.Character;
 import gamestates.GameOver;
+
 import gamestates.Inform;
 import gamestates.Loading;
 import gamestates.Menu;
@@ -30,11 +31,10 @@ public class UI {
     BufferedImage coin;
     Image bg;
     Graphics2D g2;
-    
-    public boolean messageOn = false;
+
     ArrayList<String> message = new ArrayList<String>();
     ArrayList<Integer> messageCounter = new ArrayList<Integer>();
-    
+
     public Menu menuState;
     public Playing playingState;
     public Character characterSate;
@@ -43,19 +43,16 @@ public class UI {
     public GameOver gameOverState;
     public Loading loadingState;
     public Inform informState;
-    
-    
 
     public String currentDialogue = "";
     public int commandNum = 0;
-    
- 
+
     public int playerSlotCol = 0;
     public int playerSlotRow = 0;
-    
+
     public int npcSlotCol = 0;
     public int npcSlotRow = 0;
-    
+
     int subState = 0;
     int counter = 0;
     public Entity npc;
@@ -81,21 +78,22 @@ public class UI {
         }
 
     }
+
     private void initClasses() {
-    	menuState = new Menu(gp);
-    	playingState = new Playing(gp);
-    	optionState = new Option(gp);
-    	
-    	winState = new Winner(gp);
-    	gameOverState = new GameOver(gp);
-    	loadingState = new Loading(gp);
-    	
-    	informState = new Inform(gp);
-    	
-    	characterSate =  new Character(gp);
-    	
-	}
-    
+        menuState = new Menu(gp);
+        playingState = new Playing(gp);
+        optionState = new Option(gp);
+
+        winState = new Winner(gp);
+        gameOverState = new GameOver(gp);
+        loadingState = new Loading(gp);
+
+        informState = new Inform(gp);
+
+        characterSate = new Character(gp);
+
+    }
+
     public void addMessage(String text) {
         message.add(text);
         messageCounter.add(0);
@@ -106,13 +104,14 @@ public class UI {
         this.g2 = g2;
         g2.setFont(MineCraft);
         g2.setColor(Color.white);
+
         // TITLE STATE
         if (gp.gameState == gp.titleState) {
             menuState.draw(g2);
         }
         // PLAY STATE
         if (gp.gameState == gp.playState) {
-        	playingState.draw(g2);
+            playingState.draw(g2);
             drawMessage();
         }
         // DIALOGUE STATE
@@ -121,21 +120,19 @@ public class UI {
         }
         // INFORM STATE
         if (gp.gameState == gp.informState) {
-            drawPopUpMessage();
-            //System.out.println("Check: " + currentDialogue);
-            //informState.draw(g2);
+             informState.draw(g2);
         }
         // OPTIONS STATE
         if (gp.gameState == gp.optionsState) {
-        	optionState.draw(g2);
+            optionState.draw(g2);
         }
         // GAME OVER STATE
         if (gp.gameState == gp.gameOverState) {
-        	gameOverState.draw(g2);
+            gameOverState.draw(g2);
         }
         // LOADING STATE
         if (gp.gameState == gp.loadingState) {
-        	loadingState.draw(g2);
+            loadingState.draw(g2);
         }
         // TRADING STATE
         if (gp.gameState == gp.tradingState) {
@@ -145,13 +142,11 @@ public class UI {
         if (gp.gameState == gp.characterState) {
             characterSate.draw(g2);
         }
-        //Winner
+        // Winner
         if (gp.gameState == gp.winState) {
             winState.draw(g2);
         }
     }
-
-    
 
     private void drawTradeScreen() {
         switch (subState) {
@@ -273,7 +268,7 @@ public class UI {
 
     private void tradeSell() {
         // DRAW PLAYER INVENTORY
-        characterSate.drawInventory(gp.player, true,g2);
+        characterSate.drawInventory(gp.player, true, g2);
 
         int x;
         int y;
@@ -332,10 +327,6 @@ public class UI {
 
     }
 
-
-
-    
-  
     private void drawInventory(Entity entity, boolean cursor) {
         int frameX = 0;
         int frameY = 0;
@@ -455,28 +446,7 @@ public class UI {
         }
     }
 
-    
 
-   
-
-    public void drawPopUpMessage() {
-        // WINDOW
-        int x = gp.tileSize * 3;
-        int y = gp.tileSize / 2;
-        int width = gp.screenWidth - (gp.tileSize * 6);
-        int height = gp.tileSize * 4;
-        drawSubWindow(x, y, width, height);
-        x += gp.tileSize;
-        y += gp.tileSize;
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 30F));
-        g2.setColor(Color.black);
-        for (String line : currentDialogue.split("\n")) {
-
-            g2.drawString(line, x, y);
-            y += 40;
-        }
-
-    }
 
     public void drawdialogueScreen() {
         // WINDOW

@@ -17,20 +17,20 @@ public class Trading implements Statemethods{
 	@Override
 	public void draw(Graphics2D g2) {
 		// TODO Auto-generated method stub
-		
+		//drawTradeScreen(g2);
 	}
 
-//    private void drawTradeScreen() {
+//    private void drawTradeScreen(Graphics2D g2) {
 //        switch (subState) {
 //            case 0:
-//                tradeSelect();
+//                tradeSelect(g2);
 //                break;
 //
 //            case 1:
-//                tradeBuy();
+//                tradeBuy(g2);
 //                break;
 //            case 2:
-//                tradeSell();
+//                tradeSell(g2);
 //                break;
 //        }
 //        gp.keyH.enterPressed = false;
@@ -199,6 +199,6 @@ public class Trading implements Statemethods{
 //
 //    }
 //
-//
+
 
 }
