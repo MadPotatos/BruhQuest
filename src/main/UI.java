@@ -5,17 +5,18 @@ import java.awt.FontFormatException;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.awt.Image;
+
 import java.awt.BasicStroke;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-import javax.swing.ImageIcon;
+
 import entity.Entity;
 import entity.item.*;
 import gamestates.Character;
+import gamestates.Dialogue;
 import gamestates.GameOver;
 
 import gamestates.Inform;
@@ -29,11 +30,11 @@ public class UI {
     GamePanel gp;
     Font MineCraft;
     BufferedImage coin;
-    Image bg;
+
     Graphics2D g2;
 
-    ArrayList<String> message = new ArrayList<String>();
-    ArrayList<Integer> messageCounter = new ArrayList<Integer>();
+    public ArrayList<String> message = new ArrayList<String>();
+    public ArrayList<Integer> messageCounter = new ArrayList<Integer>();
 
     public Menu menuState;
     public Playing playingState;
@@ -43,6 +44,8 @@ public class UI {
     public GameOver gameOverState;
     public Loading loadingState;
     public Inform informState;
+    public Dialogue dialogueSate;
+
 
     public String currentDialogue = "";
     public int commandNum = 0;
@@ -54,7 +57,6 @@ public class UI {
     public int npcSlotRow = 0;
 
     int subState = 0;
-    int counter = 0;
     public Entity npc;
 
     public UI(GamePanel gp) {
@@ -71,11 +73,7 @@ public class UI {
         // CREATE HUD OBJECT
         Item Coin = new Coin(gp);
         coin = Coin.getImage();
-        try {
-            bg = new ImageIcon(
-                    getClass().getResource("/ui/bg.gif")).getImage();
-        } catch (Exception e) {
-        }
+      
 
     }
 
@@ -91,7 +89,7 @@ public class UI {
         informState = new Inform(gp);
 
         characterSate = new Character(gp);
-
+        dialogueSate  = new Dialogue(gp);
     }
 
     public void addMessage(String text) {
@@ -112,11 +110,10 @@ public class UI {
         // PLAY STATE
         if (gp.gameState == gp.playState) {
             playingState.draw(g2);
-            drawMessage();
         }
         // DIALOGUE STATE
         if (gp.gameState == gp.dialogueState) {
-            drawdialogueScreen();
+            dialogueSate.draw(g2);
         }
         // INFORM STATE
         if (gp.gameState == gp.informState) {
@@ -327,7 +324,7 @@ public class UI {
 
     }
 
-    private void drawInventory(Entity entity, boolean cursor) {
+    public void drawInventory(Entity entity, boolean cursor) {
         int frameX = 0;
         int frameY = 0;
         int frameWidth = 0;
@@ -419,34 +416,6 @@ public class UI {
         int itemIndex = slotCol + slotRow * 5;
         return itemIndex;
     }
-
-    private void drawMessage() {
-        int messageX = gp.tileSize;
-        int messageY = gp.tileSize * 4;
-        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 28F));
-        for (int i = 0; i < message.size(); i++) {
-            if (message.get(i) != null) {
-                g2.setColor(Color.black);
-                g2.drawString(message.get(i), messageX + 2, messageY + 2);
-
-                g2.setColor(new Color(214, 214, 214));
-                g2.drawString(message.get(i), messageX, messageY);
-
-                int counter = messageCounter.get(i) + 1; // messageCounter ++;
-                messageCounter.set(i, counter);
-                messageY += 50;
-
-                if (messageCounter.get(i) > 120) {
-                    message.remove(i);
-                    messageCounter.remove(i);
-
-                }
-
-            }
-        }
-    }
-
-
 
     public void drawdialogueScreen() {
         // WINDOW

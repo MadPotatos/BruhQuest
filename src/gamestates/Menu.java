@@ -2,13 +2,12 @@ package gamestates;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.FontFormatException;
+
 
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
+
 
 import javax.swing.ImageIcon;
 
@@ -20,20 +19,10 @@ public class Menu implements Statemethods{
 	private Image bg;
 
     public int commandNum = 0;
-    Font MineCraft;
+
     public Menu(GamePanel gp) {
         this.gp = gp;
-        
-        try {
-            InputStream is = getClass().getResourceAsStream("/Font/determination.ttf");
-            MineCraft = Font.createFont(Font.TRUETYPE_FONT, is);
-        } catch (FontFormatException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        try {
+            try {
             bg = new ImageIcon(
                     getClass().getResource("/ui/bg.gif")).getImage();
         } catch (Exception e) {
