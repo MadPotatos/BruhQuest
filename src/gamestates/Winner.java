@@ -6,18 +6,18 @@ import java.awt.Graphics2D;
 
 import main.GamePanel;
 
-public class GameOver implements Statemethods{
+public class Winner implements Statemethods{
 	GamePanel gp;
-	public int commandNum = 0;
-	public GameOver(GamePanel gp) {
+	public Winner(GamePanel gp) {
         this.gp = gp;
 	}
+      
 	@Override
 	public void draw(Graphics2D g2) {
 		// TODO Auto-generated method stub
-		drawGameOverScreen(g2);
+		drawWinScreen(g2);
 	}
-	private void drawGameOverScreen(Graphics2D g2) {
+	private void drawWinScreen(Graphics2D g2) {
         g2.setColor(new Color(0, 0, 0, 150));
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 90f));
@@ -25,39 +25,33 @@ public class GameOver implements Statemethods{
         int y;
         String text;
 
-        text = "You died";
+        text = "Congratulation!!!";
         // shadow
         g2.setColor(Color.black);
         x = getXforCenteredText(text,g2);
         y = gp.tileSize * 4;
         g2.drawString(text, x, y);
         // text
-        g2.setColor(Color.red);
+        g2.setColor(Color.green);
         g2.drawString(text, x - 4, y - 4);
-        // retry
+        // text
+        g2.setColor(Color.green);
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 50f));
+        text = "You found your way back home";
+        x = getXforCenteredText(text,g2);
+        y += gp.tileSize * 2;
+        g2.drawString(text, x, y);
+        // return to title screen
         g2.setColor(Color.white);
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 40f));
-        text = "Retry";
+        text = "Press Enter to return";
         x = getXforCenteredText(text,g2);
         y += gp.tileSize * 4;
         g2.drawString(text, x, y);
-        if (commandNum == 0) {
-            g2.drawString(">", x - 40, y);
-        }
-        // quit
-        text = "Quit";
-        x = getXforCenteredText(text,g2);
-        y += 55;
-        g2.drawString(text, x, y);
-        if (commandNum == 1) {
-            g2.drawString(">", x - 40, y);
-        }
-        
     }
 	public int getXforCenteredText(String text,Graphics2D g2) {
 	    int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
 	    int x = gp.screenWidth / 2 - length / 2;
 	    return x;
 	}
-
 }

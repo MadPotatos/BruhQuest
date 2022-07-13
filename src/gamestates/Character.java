@@ -24,7 +24,7 @@ public class Character implements Statemethods{
 	}
 	
 
-    private void drawInventory(Entity entity, boolean cursor, Graphics2D g2) {
+    public void drawInventory(Entity entity, boolean cursor, Graphics2D g2) {
         int frameX = 0;
         int frameY = 0;
         int frameWidth = 0;
