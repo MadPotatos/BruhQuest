@@ -41,7 +41,6 @@ public class KeyHandler implements KeyListener {
         }
         // GAME OVER
         else if (gp.gameState == gp.gameOverState) {
-
             gameOverState(code);
         }
         // TRADING
