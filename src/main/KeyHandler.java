@@ -318,28 +318,28 @@ public class KeyHandler implements KeyListener {
 
     private void playerInventory(int code) {
         if (code == KeyEvent.VK_W) {
-            if (gp.ui.playerSlotRow != 0) {
-                gp.ui.playerSlotRow--;
+            if (gp.ui.characterSate.playerSlotRow != 0) {
+                gp.ui.characterSate.playerSlotRow--;
                 gp.playSE(9);
             }
 
         }
         if (code == KeyEvent.VK_A) {
-            if (gp.ui.playerSlotCol != 0) {
-                gp.ui.playerSlotCol--;
+            if (gp.ui.characterSate.playerSlotCol != 0) {
+                gp.ui.characterSate.playerSlotCol--;
                 gp.playSE(9);
             }
         }
         if (code == KeyEvent.VK_S) {
-            if (gp.ui.playerSlotRow != 3) {
-                gp.ui.playerSlotRow++;
+            if (gp.ui.characterSate.playerSlotRow != 3) {
+                gp.ui.characterSate.playerSlotRow++;
                 gp.playSE(9);
             }
 
         }
         if (code == KeyEvent.VK_D) {
-            if (gp.ui.playerSlotCol != 4) {
-                gp.ui.playerSlotCol++;
+            if (gp.ui.characterSate.playerSlotCol != 4) {
+                gp.ui.characterSate.playerSlotCol++;
                 gp.playSE(9);
             }
         }

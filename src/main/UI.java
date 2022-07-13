@@ -17,6 +17,7 @@ import entity.Entity;
 import entity.item.*;
 import gamestates.Character;
 import gamestates.GameOver;
+import gamestates.Inform;
 import gamestates.Loading;
 import gamestates.Menu;
 import gamestates.Option;
@@ -41,16 +42,20 @@ public class UI {
     public Winner winState;
     public GameOver gameOverState;
     public Loading loadingState;
+    public Inform informState;
     
-    public boolean gameFinished = false;
+    
+
     public String currentDialogue = "";
     public int commandNum = 0;
     
  
     public int playerSlotCol = 0;
     public int playerSlotRow = 0;
+    
     public int npcSlotCol = 0;
     public int npcSlotRow = 0;
+    
     int subState = 0;
     int counter = 0;
     public Entity npc;
@@ -85,6 +90,8 @@ public class UI {
     	gameOverState = new GameOver(gp);
     	loadingState = new Loading(gp);
     	
+    	informState = new Inform(gp);
+    	
     	characterSate =  new Character(gp);
     	
 	}
@@ -115,13 +122,8 @@ public class UI {
         // INFORM STATE
         if (gp.gameState == gp.informState) {
             drawPopUpMessage();
-        }
-        // CHARACTER STATE
-        if (gp.gameState == gp.characterState) {
-
-            //drawCharacterScreen();
-            characterSate.draw(g2);
-            drawInventory(gp.player, true);
+            //System.out.println("Check: " + currentDialogue);
+            //informState.draw(g2);
         }
         // OPTIONS STATE
         if (gp.gameState == gp.optionsState) {
@@ -133,12 +135,15 @@ public class UI {
         }
         // LOADING STATE
         if (gp.gameState == gp.loadingState) {
-            //drawLoading();
-            loadingState.draw(g2);
+        	loadingState.draw(g2);
         }
         // TRADING STATE
         if (gp.gameState == gp.tradingState) {
             drawTradeScreen();
+        }
+        // CHARACTER STATE
+        if (gp.gameState == gp.characterState) {
+            characterSate.draw(g2);
         }
         //Winner
         if (gp.gameState == gp.winState) {
@@ -256,7 +261,6 @@ public class UI {
                     subState = 0;
                     gp.gameState = gp.dialogueState;
                     gp.ui.currentDialogue = "You can't carry more items";
-
                 } else {
                     gp.playSE(9);
                     gp.player.coin -= npc.inventory.get(itemIndex).getPrice();
@@ -269,7 +273,7 @@ public class UI {
 
     private void tradeSell() {
         // DRAW PLAYER INVENTORY
-        drawInventory(gp.player, true);
+        characterSate.drawInventory(gp.player, true,g2);
 
         int x;
         int y;
@@ -294,7 +298,7 @@ public class UI {
         g2.drawString("Coin : " + gp.player.coin, x + 24, y + 60);
 
         // DRAW PRICE WINDOW
-        int itemIndex = getItemIndexonSlot(playerSlotCol, playerSlotRow);
+        int itemIndex = getItemIndexonSlot(characterSate.playerSlotCol, characterSate.playerSlotRow);
         if (itemIndex < gp.player.inventory.size()) {
             x = (int) (gp.tileSize * 15.5);
             y = (int) (gp.tileSize * 5.5);
@@ -309,6 +313,7 @@ public class UI {
             g2.drawString(text, x, y + 32);
 
             // SELL ITEM
+
             if (gp.keyH.enterPressed == true) {
                 if (gp.player.inventory.get(itemIndex) == gp.player.currentWeapon
                         || gp.player.inventory.get(itemIndex) == gp.player.currentShield) {
@@ -327,26 +332,7 @@ public class UI {
 
     }
 
-    private void drawLoading() {
-        counter++;
-        g2.setColor(new Color(0, 0, 0, counter * 5));
-        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
-        if (counter == 50) {
-            counter = 0;
-            gp.gameState = gp.playState;
-            gp.currentMap = gp.eHandler.getTempMap();
-            gp.player.worldX = gp.tileSize * gp.eHandler.getTempCol();
-            gp.player.worldY = gp.tileSize * gp.eHandler.getTempRow();
-            int preEventX = gp.player.worldX;
-            int preEventY = gp.player.worldY;
 
-            gp.eHandler.setPreviousEventX(preEventX);
-            
-            gp.eHandler.setPreviousEventY(preEventY);
-            
-        }
-
-    }
 
     
   

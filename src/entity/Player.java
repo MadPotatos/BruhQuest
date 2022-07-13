@@ -22,7 +22,6 @@ public class Player extends Entity {
 	public final int screenX;
 	public final int screenY;
 
-	private int hasKey = 0;
 	private int standCounter = 0;
 	private boolean attackCanceled = false;
 	private boolean attacking = false;
@@ -368,8 +367,8 @@ public class Player extends Entity {
 	}
 
 	public void selectItem() {
-		int itemIndex = gp.ui.getItemIndexonSlot(gp.ui.playerSlotCol,
-				gp.ui.playerSlotRow);
+		int itemIndex = gp.ui.getItemIndexonSlot(gp.ui.characterSate.playerSlotCol,
+				gp.ui.characterSate.playerSlotRow);
 		if (itemIndex < inventory.size()) {
 			Item selectedItem = inventory.get(itemIndex);
 			if (selectedItem.getType() == LoadSave.TYPE_AXE || selectedItem.getType() == LoadSave.TYPE_SWORD) {
@@ -567,14 +566,6 @@ public class Player extends Entity {
 
 	public int getScreenY() {
 		return screenY;
-	}
-
-	public int getHasKey() {
-		return hasKey;
-	}
-
-	public void setHasKey(int hasKey) {
-		this.hasKey = hasKey;
 	}
 
 	public boolean isAttackCanceled() {

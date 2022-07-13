@@ -20,7 +20,7 @@ public class Character implements Statemethods{
     }
 	public void draw(Graphics2D g2) {
 		drawCharacterScreen(g2);
-		//drawInventory(gp.player, true,g2);
+		drawInventory(gp.player, true,g2);
 	}
 	
 

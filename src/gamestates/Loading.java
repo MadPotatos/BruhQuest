@@ -7,7 +7,7 @@ import main.GamePanel;
 
 public class Loading implements Statemethods{
 	private GamePanel gp;
-    int counter = 0;
+    private int counter = 0;
 	public Loading(GamePanel gp) {
         this.gp = gp;
       
