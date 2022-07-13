@@ -26,10 +26,10 @@ public class Config {
             }
             bw.newLine();
             // MUSIC VOLUME
-            bw.write(String.valueOf(gp.music.volumeScale));
+            bw.write(String.valueOf(gp.music.getVolumeScale()));
             bw.newLine();
             // SE VOLUME
-            bw.write(String.valueOf(gp.se.volumeScale));
+            bw.write(String.valueOf(gp.se.getVolumeScale()));
             bw.newLine();
             bw.close();
         } catch (IOException e) {
@@ -51,10 +51,10 @@ public class Config {
             }
             // MUSIC VOLUME
             s = br.readLine();
-            gp.music.volumeScale = Integer.parseInt(s);
+            gp.music.setVolumeScale(Integer.parseInt(s));
             // SE VOLUME
             s = br.readLine();
-            gp.se.volumeScale = Integer.parseInt(s);
+            gp.se.setVolumeScale(Integer.parseInt(s)); 
 
             br.close();
         } catch (Exception e) {

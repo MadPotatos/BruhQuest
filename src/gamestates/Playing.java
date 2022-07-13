@@ -1,0 +1,82 @@
+package gamestates;
+
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+
+import entity.item.Heart;
+import entity.item.Item;
+import entity.item.Mana;
+import main.GamePanel;
+
+
+public class Playing implements Statemethods{
+	private GamePanel gp;
+	BufferedImage heart_full, heart_half, heart_empty, mana_full, mana_empty;
+	public Playing(GamePanel gp) {
+        this.gp = gp;
+        Item heart = new Heart(gp);
+        heart_full = heart.getImage();
+        heart_half = heart.getImage2();
+        heart_empty = heart.getImage3();
+        Item mana = new Mana(gp);
+        mana_full = mana.getImage();
+        mana_empty = mana.getImage2();
+        
+    }
+	@Override
+	public void draw(Graphics2D g2) {
+		// TODO Auto-generated method stub
+		drawPlayerLife(g2);
+		//drawMessage(g2);
+	}
+    private void drawPlayerLife(Graphics2D g2) {
+
+        int x = gp.tileSize / 2;
+        int y = gp.tileSize / 2;
+        int i = 0;
+        // DRAW MAX LIFE
+        while (i < gp.player.maxLife / 2) {
+            g2.drawImage(heart_empty, x, y, null);
+            i++;
+            x += gp.tileSize;
+
+        }
+        // RESET
+        x = gp.tileSize / 2;
+        y = gp.tileSize / 2;
+        i = 0;
+        while (i < gp.player.life) {
+            g2.drawImage(heart_half, x, y, null);
+            i++;
+            if (i < gp.player.life) {
+                g2.drawImage(heart_full, x, y, null);
+            }
+            i++;
+            x += gp.tileSize;
+
+        }
+
+        // DRAW MAX MANA
+        x = (gp.tileSize / 2);
+        y = (int) (gp.tileSize * 1.5);
+        i = 0;
+        while (i < gp.player.maxMana) {
+            g2.drawImage(mana_empty, x, y, null);
+            i++;
+            x += 35;
+        }
+        // DRAW MANA
+        x = (gp.tileSize / 2);
+        y = (int) (gp.tileSize * 1.5);
+        i = 0;
+        while (i < gp.player.mana) {
+            g2.drawImage(mana_full, x, y, null);
+            i++;
+            x += 35;
+        }
+
+    }
+
+    
+
+}

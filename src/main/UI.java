@@ -502,12 +502,12 @@ public class UI {
         // MUSIC VOLUME
         textY += gp.tileSize;
         g2.drawRect(textX, textY, 120, 24);
-        int volumeWidth = 24 * gp.music.volumeScale;
+        int volumeWidth = 24 * gp.music.getVolumeScale();
         g2.fillRect(textX, textY, volumeWidth, 24);
         // SE VOLUME
         textY += gp.tileSize;
         g2.drawRect(textX, textY, 120, 24);
-        volumeWidth = 24 * gp.se.volumeScale;
+        volumeWidth = 24 * gp.se.getVolumeScale();
         g2.fillRect(textX, textY, volumeWidth, 24);
 
         try {

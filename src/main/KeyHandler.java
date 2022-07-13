@@ -162,13 +162,17 @@ public class KeyHandler implements KeyListener {
         }
         if (code == KeyEvent.VK_A) {
             if (gp.ui.subState == 0) {
-                if (gp.ui.commandNum == 1 && gp.music.volumeScale > 0) {
-                    gp.music.volumeScale--;
+            	if (gp.ui.commandNum == 1 && gp.music.getVolumeScale() > 0) {
+                	int volumeScale = gp.music.getVolumeScale()-1;
+                	
+                    gp.music.setVolumeScale(volumeScale);;
                     gp.music.checkVolume();
                     gp.playSE(9);
                 }
-                if (gp.ui.commandNum == 2 && gp.se.volumeScale > 0) {
-                    gp.se.volumeScale--;
+                if (gp.ui.commandNum == 2 && gp.se.getVolumeScale() > 0) {
+                	int volumeScale = gp.se.getVolumeScale()-1;
+                	
+                    gp.se.setVolumeScale(volumeScale);
 
                     gp.playSE(9);
                 }
@@ -177,13 +181,15 @@ public class KeyHandler implements KeyListener {
         }
         if (code == KeyEvent.VK_D) {
             if (gp.ui.subState == 0) {
-                if (gp.ui.commandNum == 1 && gp.music.volumeScale < 5) {
-                    gp.music.volumeScale++;
+            	if (gp.ui.commandNum == 1 && gp.music.getVolumeScale() < 5) {
+                	int volumeScale = gp.music.getVolumeScale()+1;
+                    gp.music.setVolumeScale(volumeScale);
                     gp.music.checkVolume();
                     gp.playSE(9);
                 }
-                if (gp.ui.commandNum == 2 && gp.se.volumeScale < 5) {
-                    gp.se.volumeScale++;
+                if (gp.ui.commandNum == 2 && gp.se.getVolumeScale() < 5) {
+                	int volumeScale = gp.se.getVolumeScale()+1;
+                    gp.se.setVolumeScale(volumeScale);
 
                     gp.playSE(9);
                 }
