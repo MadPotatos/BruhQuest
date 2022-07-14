@@ -11,6 +11,7 @@ import entity.Entity;
 import entity.item.Coin;
 import entity.item.Item;
 import main.GamePanel;
+import utilz.LoadSave;
 
 public class Trading extends PaintUI{
     BufferedImage coin;
@@ -136,11 +137,11 @@ public class Trading extends PaintUI{
                     gp.playSE(9);
                     gp.player.coin -= gp.ui.npc.inventory.get(itemIndex).getPrice();
                     gp.player.inventory.add(gp.ui.npc.inventory.get(itemIndex));
-//                    if(npc.inventory.get(itemIndex).getType() == LoadSave.TYPE_AXE || 
-//                    		npc.inventory.get(itemIndex).getType() == LoadSave.TYPE_SHIELD
-//                    		||npc.inventory.get(itemIndex).getType() == LoadSave.TYPE_SWORD) {
-//                    	npc.inventory.remove(itemIndex);
-//                    }
+                    if(gp.ui.npc.inventory.get(itemIndex).getType() == LoadSave.TYPE_AXE || 
+                    		gp.ui.npc.inventory.get(itemIndex).getType() == LoadSave.TYPE_SHIELD
+                    		||gp.ui.npc.inventory.get(itemIndex).getType() == LoadSave.TYPE_SWORD) {
+                    	gp.ui.npc.inventory.remove(itemIndex);
+                    }
 
                 }
             }
