@@ -1,6 +1,5 @@
 package gamestates;
 
-
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
@@ -11,23 +10,26 @@ import entity.Entity;
 import entity.item.Coin;
 import entity.item.Item;
 import main.GamePanel;
-import utilz.LoadSave;
+import utilz.*;
 
-public class Trading extends PaintUI{
+public class Trading extends PaintUI {
     BufferedImage coin;
-	public Trading(GamePanel gp) {
-	        super(gp);
-	        Item Coin = new Coin(gp);
-	        coin = Coin.getImage();
-	        
-	}
-	@Override
-	public void draw(Graphics2D g2) {
-		// TODO Auto-generated method stub
-		drawTradeScreen(g2);
-	}
+
+    public Trading(GamePanel gp) {
+        super(gp);
+        Item Coin = new Coin(gp);
+        coin = Coin.getImage();
+
+    }
+
+    @Override
+    public void draw(Graphics2D g2) {
+        // TODO Auto-generated method stub
+        drawTradeScreen(g2);
+    }
+
     private void drawTradeScreen(Graphics2D g2) {
-    	switch (gp.ui.subState) {
+        switch (gp.ui.subState) {
             case 0:
                 tradeSelect(g2);
                 break;
@@ -48,7 +50,7 @@ public class Trading extends PaintUI{
         int y = gp.tileSize * 4;
         int width = gp.tileSize * 3;
         int height = (int) (gp.tileSize * 3.5);
-        drawSubWindow(x, y, width, height,g2);
+        drawSubWindow(x, y, width, height, g2);
         // DRAW TEXT
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 28F));
         g2.setColor(Color.black);
@@ -58,7 +60,7 @@ public class Trading extends PaintUI{
         if (gp.ui.commandNum == 0) {
             g2.drawString(">", x - 24, y);
             if (gp.keyH.enterPressed == true) {
-            	gp.ui.subState = 1;
+                gp.ui.subState = 1;
             }
         }
         y += gp.tileSize;
@@ -66,7 +68,7 @@ public class Trading extends PaintUI{
         if (gp.ui.commandNum == 1) {
             g2.drawString(">", x - 24, y);
             if (gp.keyH.enterPressed == true) {
-            	gp.ui.subState = 2;
+                gp.ui.subState = 2;
             }
         }
         y += gp.tileSize;
@@ -74,8 +76,8 @@ public class Trading extends PaintUI{
         if (gp.ui.commandNum == 2) {
             g2.drawString(">", x - 24, y);
             if (gp.keyH.enterPressed == true) {
-            	gp.ui.commandNum = 0;
-                gp.gameState = gp.dialogueState;
+                gp.ui.commandNum = 0;
+                Gamestate.state = Gamestate.DIALOUE;
                 gp.ui.currentDialogue = "Come again soon";
             }
         }
@@ -84,16 +86,16 @@ public class Trading extends PaintUI{
     private void tradeBuy(Graphics2D g2) {
         g2.setColor(Color.black);
         // DRAW PLAYER INVENTORY
-        drawInventory(gp.player, false,g2);
+        drawInventory(gp.player, false, g2);
         // DRAW NPC INVENTORY
-        drawInventory(gp.ui.npc, true,g2);
+        drawInventory(gp.ui.npc, true, g2);
         g2.setColor(Color.black);
         // DRAW HINT WINDOW
         int x = gp.tileSize * 2;
         int y = gp.tileSize * 9;
         int width = gp.tileSize * 6;
         int height = gp.tileSize * 2;
-        drawSubWindow(x, y, width, height,g2);
+        drawSubWindow(x, y, width, height, g2);
         g2.setColor(Color.black);
         g2.drawString("[ESC] back", x + 24, y + 60);
 
@@ -103,7 +105,7 @@ public class Trading extends PaintUI{
         y = gp.tileSize * 9;
         width = gp.tileSize * 6;
         height = gp.tileSize * 2;
-        drawSubWindow(x, y, width, height,g2);
+        drawSubWindow(x, y, width, height, g2);
         g2.setColor(Color.black);
         g2.drawString("Coin : " + gp.player.coin, x + 24, y + 60);
 
@@ -114,33 +116,33 @@ public class Trading extends PaintUI{
             y = (int) (gp.tileSize * 5.5);
             width = (int) (gp.tileSize * 2.5);
             height = gp.tileSize;
-            drawSubWindow(x, y, width, height,g2);
+            drawSubWindow(x, y, width, height, g2);
             g2.drawImage(coin, x + 10, y + 8, 32, 32, null);
             int price = gp.ui.npc.inventory.get(itemIndex).getPrice();
             String text = "" + price;
-            x = getXforAlignToRightText(text, gp.tileSize * 8 - 20,g2);
+            x = getXforAlignToRightText(text, gp.tileSize * 8 - 20, g2);
             g2.setColor(Color.black);
             g2.drawString(text, x, y + 32);
 
             // BUY ITEM
             if (gp.keyH.enterPressed == true) {
                 if (gp.ui.npc.inventory.get(itemIndex).getPrice() > gp.player.coin) {
-                	gp.ui.subState = 0;
-                    gp.gameState = gp.dialogueState;
+                    gp.ui.subState = 0;
+                    Gamestate.state = Gamestate.DIALOUE;
                     gp.ui.currentDialogue = "You don't have enough coin";
                     drawdialogueScreen(g2);
                 } else if (gp.player.inventory.size() == gp.player.maxInventorySize) {
-                	gp.ui.subState = 0;
-                    gp.gameState = gp.dialogueState;
+                    gp.ui.subState = 0;
+                    Gamestate.state = Gamestate.DIALOUE;
                     gp.ui.currentDialogue = "You can't carry more items";
                 } else {
                     gp.playSE(9);
                     gp.player.coin -= gp.ui.npc.inventory.get(itemIndex).getPrice();
                     gp.player.inventory.add(gp.ui.npc.inventory.get(itemIndex));
-                    if(gp.ui.npc.inventory.get(itemIndex).getType() == LoadSave.TYPE_AXE || 
-                    		gp.ui.npc.inventory.get(itemIndex).getType() == LoadSave.TYPE_SHIELD
-                    		||gp.ui.npc.inventory.get(itemIndex).getType() == LoadSave.TYPE_SWORD) {
-                    	gp.ui.npc.inventory.remove(itemIndex);
+                    if (gp.ui.npc.inventory.get(itemIndex).getType() == LoadSave.TYPE_AXE ||
+                            gp.ui.npc.inventory.get(itemIndex).getType() == LoadSave.TYPE_SHIELD
+                            || gp.ui.npc.inventory.get(itemIndex).getType() == LoadSave.TYPE_SWORD) {
+                        gp.ui.npc.inventory.remove(itemIndex);
                     }
 
                 }
@@ -150,7 +152,7 @@ public class Trading extends PaintUI{
 
     private void tradeSell(Graphics2D g2) {
         // DRAW PLAYER INVENTORY
-        drawInventory(gp.player, true,g2);
+        drawInventory(gp.player, true, g2);
 
         int x;
         int y;
@@ -161,7 +163,7 @@ public class Trading extends PaintUI{
         y = gp.tileSize * 9;
         width = gp.tileSize * 6;
         height = gp.tileSize * 2;
-        drawSubWindow(x, y, width, height,g2);
+        drawSubWindow(x, y, width, height, g2);
         g2.setColor(Color.black);
         g2.drawString("[ESC] back", x + 24, y + 60);
 
@@ -170,22 +172,22 @@ public class Trading extends PaintUI{
         y = gp.tileSize * 9;
         width = gp.tileSize * 6;
         height = gp.tileSize * 2;
-        drawSubWindow(x, y, width, height,g2);
+        drawSubWindow(x, y, width, height, g2);
         g2.setColor(Color.black);
         g2.drawString("Coin : " + gp.player.coin, x + 24, y + 60);
 
         // DRAW PRICE WINDOW
-        int itemIndex = getItemIndexonSlot(gp.ui.playerSlotCol,gp.ui.playerSlotRow);
+        int itemIndex = getItemIndexonSlot(gp.ui.playerSlotCol, gp.ui.playerSlotRow);
         if (itemIndex < gp.player.inventory.size()) {
             x = (int) (gp.tileSize * 15.5);
             y = (int) (gp.tileSize * 5.5);
             width = (int) (gp.tileSize * 2.5);
             height = gp.tileSize;
-            drawSubWindow(x, y, width, height,g2);
+            drawSubWindow(x, y, width, height, g2);
             g2.drawImage(coin, x + 10, y + 8, 32, 32, null);
             int price = gp.player.inventory.get(itemIndex).getPrice() / 2;
             String text = "" + price;
-            x = getXforAlignToRightText(text, gp.tileSize * 18 - 20,g2);
+            x = getXforAlignToRightText(text, gp.tileSize * 18 - 20, g2);
             g2.setColor(Color.black);
             g2.drawString(text, x, y + 32);
 
@@ -194,9 +196,9 @@ public class Trading extends PaintUI{
             if (gp.keyH.enterPressed == true) {
                 if (gp.player.inventory.get(itemIndex) == gp.player.currentWeapon
                         || gp.player.inventory.get(itemIndex) == gp.player.currentShield) {
-                	gp.ui.commandNum = 0;
-                	gp.ui.subState = 0;
-                    gp.gameState = gp.dialogueState;
+                    gp.ui.commandNum = 0;
+                    gp.ui.subState = 0;
+                    Gamestate.state = Gamestate.DIALOUE;
                     gp.ui.currentDialogue = "You can't sell this item";
                 } else {
                     gp.playSE(9);
@@ -235,7 +237,7 @@ public class Trading extends PaintUI{
 
         // FRAME
 
-        drawSubWindow(frameX, frameY, frameWidth, frameHeight,g2);
+        drawSubWindow(frameX, frameY, frameWidth, frameHeight, g2);
 
         // slot
         final int slotXstart = frameX + 20;
@@ -285,7 +287,7 @@ public class Trading extends PaintUI{
             int itemIndex = getItemIndexonSlot(slotCol, slotRow);
 
             if (itemIndex < entity.inventory.size()) {
-                drawSubWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight,g2);
+                drawSubWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight, g2);
                 for (String line : entity.inventory.get(itemIndex).getDescription().split("\n")) {
                     g2.setColor(Color.black);
                     g2.drawString(line, textX, textY);
@@ -296,6 +298,7 @@ public class Trading extends PaintUI{
         }
 
     }
+
     public void drawdialogueScreen(Graphics2D g2) {
         // WINDOW
 
@@ -303,7 +306,7 @@ public class Trading extends PaintUI{
         int y = gp.tileSize / 2;
         int width = gp.screenWidth - (gp.tileSize * 6);
         int height = gp.tileSize * 4;
-        drawSubWindow(x, y, width, height,g2);
+        drawSubWindow(x, y, width, height, g2);
         x += gp.tileSize;
         y += 32;
 

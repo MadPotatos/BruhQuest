@@ -1,6 +1,7 @@
 package main;
 
 import entity.Entity;
+import utilz.*;
 
 public class EventHandler {
     private GamePanel gp;
@@ -36,8 +37,8 @@ public class EventHandler {
         }
     }
 
-    public void damagePit(int gameState) {
-        gp.gameState = gameState;
+    public void damagePit(Gamestate gameState) {
+        Gamestate.state = gameState;
         gp.playSE(5);
         gp.ui.currentDialogue = "You fall into a pit!";
         gp.player.life -= 1;
@@ -45,9 +46,9 @@ public class EventHandler {
         canTouchEvent = false;
     }
 
-    public void healingPool(int gameState) {
+    public void healingPool(Gamestate gameState) {
         if (gp.keyH.enterPressed == true) {
-            gp.gameState = gameState;
+            Gamestate.state = gameState;
             gp.player.setAttackCanceled(true);
             gp.playSE(2);
             gp.ui.currentDialogue = "Rest at the statue\n You feel better! \n Monster respawns!";
@@ -69,16 +70,16 @@ public class EventHandler {
         }
         if (canTouchEvent == true) {
             if (hit(0, 5, 5, "left") == true) {
-                damagePit(gp.informState);
+                damagePit(Gamestate.INFORM);
             } else if (hit(0, 5, 7, "left") == true) {
-                damagePit(gp.informState);
+                damagePit(Gamestate.INFORM);
             } else if (hit(0, 1, 5, "left") == true) {
-                healingPool(gp.informState);
+                healingPool(Gamestate.INFORM);
             } else if (hit(0, 7, 7, "any") == true) {
-                healingPool(gp.informState);
+                healingPool(Gamestate.INFORM);
 
             } else if (hit(0, 7, 8, "any") == true) {
-                healingPool(gp.informState);
+                healingPool(Gamestate.INFORM);
 
             } else if (hit(0, 24, 11, "any") == true) {
                 teleport(1, 20, 47);
@@ -97,7 +98,7 @@ public class EventHandler {
 
     private void speak(Entity entity) {
         if (gp.keyH.enterPressed == true) {
-            gp.gameState = gp.dialogueState;
+            Gamestate.state = Gamestate.DIALOUE;
             entity.speak();
             gp.player.setAttackCanceled(true);
 
@@ -105,7 +106,7 @@ public class EventHandler {
     }
 
     private void teleport(int map, int col, int row) {
-        gp.gameState = gp.loadingState;
+        Gamestate.state = Gamestate.LOADING;
         setTempMap(map);
         setTempCol(col);
         setTempRow(row);

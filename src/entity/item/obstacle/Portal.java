@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 import entity.item.Item;
 import main.GamePanel;
 import main.UtilityTool;
-import utilz.LoadSave;
+import utilz.*;
 
 public class Portal extends Item {
     GamePanel gp;
@@ -28,21 +28,22 @@ public class Portal extends Item {
         solidAreaDefaultY = solidArea.y;
         loadAnimations();
     }
+
     public void loadAnimations() {
         BufferedImage img = LoadSave.GetSpriteAtlas(LoadSave.POTAL);
         UtilityTool uTool = new UtilityTool();
         BufferedImage[][] animations = new BufferedImage[4][4];
         for (int j = 0; j < animations.length; j++) {
             for (int i = 0; i < animations[j].length; i++) {
-                animations[j][i] = img.getSubimage(i * 64, 0, 64,64);
-                animations[j][i] = uTool.scaleImage(animations[j][i], 3*gp.tileSize,3*gp.tileSize);
+                animations[j][i] = img.getSubimage(i * 64, 0, 64, 64);
+                animations[j][i] = uTool.scaleImage(animations[j][i], 3 * gp.tileSize, 3 * gp.tileSize);
             }
         }
         setAnimations(animations);
     }
 
     public void interact() {
-        gp.gameState = gp.winState;
+        Gamestate.state = Gamestate.WINNER;
         gp.stopMusic();
         gp.playSE(4);
     }

@@ -1,4 +1,4 @@
-package gamestates;
+package utilz;
 
 public enum Gamestate {
 	PLAYING, 

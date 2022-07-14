@@ -2,7 +2,7 @@ package entity.item;
 
 import entity.Entity;
 import main.GamePanel;
-import utilz.LoadSave;
+import utilz.*;
 
 public class Key extends Item {
     GamePanel gp;
@@ -18,7 +18,7 @@ public class Key extends Item {
     }
 
     public boolean use(Entity entity) {
-        gp.gameState = gp.informState;
+        Gamestate.state = Gamestate.INFORM;
         int objIndex = getDetected(entity, gp.obj, "Door");
         if (objIndex != 999) {
             gp.ui.currentDialogue = "You used the key to open the door.";

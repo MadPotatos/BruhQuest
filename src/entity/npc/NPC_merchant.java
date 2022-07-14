@@ -7,7 +7,7 @@ import entity.item.weapon.Axe;
 import entity.item.weapon.BeginnerSword;
 import entity.item.weapon.SteelShield;
 import main.GamePanel;
-import utilz.LoadSave;
+import utilz.*;
 
 public class NPC_merchant extends Entity {
     GamePanel gp;
@@ -40,7 +40,7 @@ public class NPC_merchant extends Entity {
 
     public void speak() {
         super.speak();
-        gp.gameState = gp.tradingState;
+        Gamestate.state = Gamestate.TRADING;
         gp.ui.npc = this;
     }
 }

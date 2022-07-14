@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 
 import main.GamePanel;
+import utilz.*;
 
 public class Loading extends PaintUI {
 
@@ -23,7 +24,7 @@ public class Loading extends PaintUI {
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
         if (gp.ui.counter == 50) {
             gp.ui.counter = 0;
-            gp.gameState = gp.playState;
+            Gamestate.state = Gamestate.PLAYING;
             gp.currentMap = gp.eHandler.getTempMap();
             gp.player.worldX = gp.tileSize * gp.eHandler.getTempCol();
             gp.player.worldY = gp.tileSize * gp.eHandler.getTempRow();

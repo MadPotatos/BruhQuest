@@ -2,7 +2,7 @@ package entity.item;
 
 import entity.Entity;
 import main.GamePanel;
-import utilz.LoadSave;
+import utilz.*;
 
 public class HealingPotion extends Item {
     private GamePanel gp;
@@ -20,7 +20,7 @@ public class HealingPotion extends Item {
     }
 
     public boolean use(Entity entity) {
-        gp.gameState = gp.informState;
+        Gamestate.state = Gamestate.INFORM;
         gp.ui.currentDialogue = "You used a " + getName() + ".";
         entity.life += getValue();
         if (gp.player.life > gp.player.maxLife) {

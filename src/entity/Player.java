@@ -14,6 +14,7 @@ import entity.projectile.Shuriken;
 import java.awt.AlphaComposite;
 import main.GamePanel;
 import main.KeyHandler;
+import utilz.Gamestate;
 import utilz.LoadSave;
 
 public class Player extends Entity {
@@ -250,7 +251,7 @@ public class Player extends Entity {
 			mana = maxMana;
 		}
 		if (life <= 0) {
-			gp.gameState = gp.gameOverState;
+			Gamestate.state = Gamestate.GAMEOVER;
 			gp.ui.commandNum = -1;
 			gp.stopMusic();
 			gp.playSE(12);
@@ -361,7 +362,8 @@ public class Player extends Entity {
 			life = maxLife;
 			mana = maxMana;
 			gp.playSE(8);
-			gp.gameState = gp.informState;
+			Gamestate.state = Gamestate.INFORM;
+
 			gp.ui.currentDialogue = "Level Up! \n Raise all attributes by 1 point. \n Press Enter to continue.";
 		}
 	}
@@ -441,7 +443,7 @@ public class Player extends Entity {
 			if (i != 999) {
 				attackCanceled = true;
 
-				gp.gameState = gp.dialogueState;
+				Gamestate.state = Gamestate.DIALOUE;
 				gp.npc[gp.currentMap][i].speak();
 
 			}

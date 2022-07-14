@@ -4,6 +4,7 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.io.IOException;
+import utilz.*;
 
 import main.GamePanel;
 
@@ -114,7 +115,7 @@ public class Option extends PaintUI {
         if (gp.ui.commandNum == 5) {
             g2.drawString(">", textX - 25, textY);
             if (gp.keyH.enterPressed == true) {
-                gp.gameState = gp.playState;
+                Gamestate.state = Gamestate.PLAYING;
                 gp.ui.commandNum = 0;
             }
         }
@@ -240,7 +241,7 @@ public class Option extends PaintUI {
             if (gp.keyH.enterPressed == true) {
                 gp.ui.subState = 0;
                 gp.playSE(9);
-                gp.gameState = gp.titleState;
+                Gamestate.state = Gamestate.MENU;
                 gp.stopMusic();
                 gp.playMusic(0);
             }
