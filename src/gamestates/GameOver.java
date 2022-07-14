@@ -7,8 +7,6 @@ import java.awt.Graphics2D;
 import main.GamePanel;
 
 public class GameOver extends PaintUI{
-	GamePanel gp;
-	public int commandNum = 0;
 	public GameOver(GamePanel gp) {
         super(gp);
 	}
@@ -41,7 +39,7 @@ public class GameOver extends PaintUI{
         x = getXforCenteredText(text,g2);
         y += gp.tileSize * 4;
         g2.drawString(text, x, y);
-        if (commandNum == 0) {
+        if (gp.ui.commandNum == 0) {
             g2.drawString(">", x - 40, y);
         }
         // quit
@@ -49,7 +47,7 @@ public class GameOver extends PaintUI{
         x = getXforCenteredText(text,g2);
         y += 55;
         g2.drawString(text, x, y);
-        if (commandNum == 1) {
+        if (gp.ui.commandNum == 1) {
             g2.drawString(">", x - 40, y);
         }
         

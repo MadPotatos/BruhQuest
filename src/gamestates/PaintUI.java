@@ -12,6 +12,7 @@ public abstract class PaintUI {
         this.gp = gp;
       
     }
+	
 	public abstract void draw(Graphics2D g2);
 	
     public void drawSubWindow(int x, int y, int width, int height, Graphics2D g2) {

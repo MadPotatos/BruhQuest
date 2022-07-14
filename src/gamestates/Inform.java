@@ -7,7 +7,7 @@ import java.awt.Graphics2D;
 import main.GamePanel;
 
 public class Inform extends PaintUI{
-	private String currentDialogue;
+	
 	public Inform(GamePanel gp) {
         super(gp);
         //this.currentDialogue = currentDialogue;
@@ -19,7 +19,7 @@ public class Inform extends PaintUI{
 		drawPopUpMessage(g2);
 	}
 	private void drawPopUpMessage(Graphics2D g2) {
-		this.currentDialogue = gp.ui.currentDialogue;
+
 		// WINDOW
         int x = gp.tileSize * 3;
         int y = gp.tileSize / 2;
@@ -30,7 +30,7 @@ public class Inform extends PaintUI{
         y += gp.tileSize;
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 30F));
         g2.setColor(Color.black);
-        for (String line : currentDialogue.split("\n")) {
+        for (String line : gp.ui.currentDialogue.split("\n")) {
             g2.drawString(line, x, y);
             y += 40;
         }       

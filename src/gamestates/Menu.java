@@ -14,10 +14,7 @@ import javax.swing.ImageIcon;
 import main.GamePanel;
 import utilz.LoadSave;
 public class Menu extends PaintUI{
-	public int titleScreenState = 0;
 	private Image bg;
-    public int commandNum = 0;
-
     public Menu(GamePanel gp) {
         super(gp);
         try {
@@ -32,7 +29,7 @@ public class Menu extends PaintUI{
 	@Override
 	public void draw(Graphics2D g2) {
 		// TODO Auto-generated method stub
-		if(titleScreenState == 0) {
+		if(gp.ui.titleScreenState == 0) {
 			drawTitleScreen(g2);
 		}else {
 			drawHowToPlay(g2);
@@ -40,7 +37,7 @@ public class Menu extends PaintUI{
 		
 	}
 	private void drawTitleScreen(Graphics2D g2) {
-		 if (titleScreenState == 0) {
+		 if (gp.ui.titleScreenState == 0) {
 	            g2.drawImage(bg, 0, 0, gp.screenWidth, gp.screenHeight, null);
 	            g2.setColor(new Color(0, 0, 0, 130));
 	            g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
@@ -66,7 +63,7 @@ public class Menu extends PaintUI{
 	            text = "NEW GAME";
 	            x = getXforCenteredText(text,g2);
 	            y += gp.tileSize * 3.5;
-	            if (commandNum == 0) {
+	            if (gp.ui.commandNum == 0) {
 	                g2.setColor(Color.yellow);
 	                g2.drawString(">", x - gp.tileSize, y);
 	            } else {
@@ -76,7 +73,7 @@ public class Menu extends PaintUI{
 	            text = "HOW TO PLAY";
 	            x = getXforCenteredText(text,g2);
 	            y += gp.tileSize;
-	            if (commandNum == 1) {
+	            if (gp.ui.commandNum == 1) {
 	                g2.setColor(Color.yellow);
 	                g2.drawString(">", x - gp.tileSize, y);
 	            } else {
@@ -86,14 +83,14 @@ public class Menu extends PaintUI{
 	            text = "QUIT";
 	            x = getXforCenteredText(text,g2);
 	            y += gp.tileSize;
-	            if (commandNum == 2) {
+	            if (gp.ui.commandNum == 2) {
 	                g2.setColor(Color.yellow);
 	                g2.drawString(">", x - gp.tileSize, y);
 	            } else {
 	                g2.setColor(Color.white);
 	            }
 	            g2.drawString(text, x, y);
-	        } else if (titleScreenState == 1) {
+	        } else if (gp.ui.titleScreenState == 1) {
 	            //drawHowToPlay(g2);
 
 	        }

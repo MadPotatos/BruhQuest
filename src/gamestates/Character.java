@@ -9,11 +9,6 @@ import entity.Entity;
 import main.GamePanel;
 
 public class Character extends PaintUI{
-	//private GamePanel gp;
-    public int playerSlotCol = 0;
-    public int playerSlotRow = 0;
-    public int npcSlotCol = 0;
-    public int npcSlotRow = 0;
 	public Character(GamePanel gp) {
         super(gp);
       
@@ -23,7 +18,6 @@ public class Character extends PaintUI{
 		drawInventory(gp.player, true,g2);
 	}
 	
-
     public void drawInventory(Entity entity, boolean cursor, Graphics2D g2) {
         int frameX = 0;
         int frameY = 0;
@@ -36,15 +30,15 @@ public class Character extends PaintUI{
             frameY = gp.tileSize;
             frameWidth = gp.tileSize * 6;
             frameHeight = gp.tileSize * 5;
-            slotCol = playerSlotCol;
-            slotRow = playerSlotRow;
+            slotCol = gp.ui.playerSlotCol;
+            slotRow = gp.ui.playerSlotRow;
         } else {
             frameX = gp.tileSize * 2;
             frameY = gp.tileSize;
             frameWidth = gp.tileSize * 6;
             frameHeight = gp.tileSize * 5;
-            slotCol = npcSlotCol;
-            slotRow = npcSlotRow;
+            slotCol = gp.ui.npcSlotCol;
+            slotRow = gp.ui.npcSlotRow;
 
         }
 

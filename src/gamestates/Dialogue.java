@@ -7,7 +7,7 @@ import java.awt.Graphics2D;
 import main.GamePanel;
 
 public class Dialogue extends PaintUI{
-	private String currentDialogue;
+
 	public Dialogue(GamePanel gp) {
         super(gp);
     }
@@ -18,7 +18,7 @@ public class Dialogue extends PaintUI{
 	}
 	public void drawdialogueScreen(Graphics2D g2) {
         // WINDOW
-		currentDialogue = gp.ui.currentDialogue;
+
         int x = gp.tileSize * 3;
         int y = gp.tileSize / 2;
         int width = gp.screenWidth - (gp.tileSize * 6);
@@ -36,7 +36,7 @@ public class Dialogue extends PaintUI{
         g2.drawString(gp.ui.npc.getName() + ":", x, y);
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 30F));
         y += 36;
-        for (String line : currentDialogue.split("\n")) {
+        for (String line : gp.ui.currentDialogue.split("\n")) {
 
             g2.drawString(line, x, y);
             y += 40;

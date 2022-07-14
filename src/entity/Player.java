@@ -367,8 +367,8 @@ public class Player extends Entity {
 	}
 
 	public void selectItem() {
-		int itemIndex = gp.ui.getItemIndexonSlot(gp.ui.characterSate.playerSlotCol,
-				gp.ui.characterSate.playerSlotRow);
+		int itemIndex = gp.ui.getItemIndexonSlot(gp.ui.playerSlotCol,
+				gp.ui.playerSlotRow);
 		if (itemIndex < inventory.size()) {
 			Item selectedItem = inventory.get(itemIndex);
 			if (selectedItem.getType() == LoadSave.TYPE_AXE || selectedItem.getType() == LoadSave.TYPE_SWORD) {

@@ -103,25 +103,25 @@ public class KeyHandler implements KeyListener {
 
     private void gameOverState(int code) {
         if (code == KeyEvent.VK_W) {
-            gp.ui.gameOverState.commandNum--;
-            if (gp.ui.gameOverState.commandNum < 0) {
-                gp.ui.gameOverState.commandNum = 1;
+            gp.ui.commandNum--;
+            if (gp.ui.commandNum < 0) {
+                gp.ui.commandNum = 1;
             }
             gp.playSE(9);
         }
         if (code == KeyEvent.VK_S) {
-            gp.ui.gameOverState.commandNum++;
-            if (gp.ui.gameOverState.commandNum > 1) {
-                gp.ui.gameOverState.commandNum = 0;
+            gp.ui.commandNum++;
+            if (gp.ui.commandNum > 1) {
+                gp.ui.commandNum = 0;
             }
             gp.playSE(9);
         }
         if (code == KeyEvent.VK_ENTER) {
-            if (gp.ui.gameOverState.commandNum == 0) {
+            if (gp.ui.commandNum == 0) {
                 gp.gameState = gp.playState;
                 gp.retry();
                 gp.playMusic(13);
-            } else if (gp.ui.gameOverState.commandNum == 1) {
+            } else if (gp.ui.commandNum == 1) {
                 gp.playMusic(0);
                 gp.gameState = gp.titleState;
                 gp.restart();
@@ -146,31 +146,32 @@ public class KeyHandler implements KeyListener {
                 break;
         }
         if (code == KeyEvent.VK_W) {
-            gp.ui.optionState.commandNum--;
+            gp.ui.commandNum--;
             gp.playSE(9);
-            if (gp.ui.optionState.commandNum < 0) {
-                gp.ui.optionState.commandNum = maxCommandNum;
+            if (gp.ui.commandNum < 0) {
+                gp.ui.commandNum = maxCommandNum;
             }
         }
         if (code == KeyEvent.VK_S) {
-            gp.ui.optionState.commandNum++;
+            gp.ui.commandNum++;
             gp.playSE(9);
-            if (gp.ui.optionState.commandNum > maxCommandNum) {
-                gp.ui.optionState.commandNum = 0;
+            if (gp.ui.commandNum > maxCommandNum) {
+                gp.ui.commandNum = 0;
             }
         }
         if (code == KeyEvent.VK_A) {
             if (gp.ui.subState == 0) {
-            	if (gp.ui.optionState.commandNum == 1 && gp.music.getVolumeScale() > 0) {
-                	int volumeScale = gp.music.getVolumeScale()-1;
-                	
-                    gp.music.setVolumeScale(volumeScale);;
+                if (gp.ui.commandNum == 1 && gp.music.getVolumeScale() > 0) {
+                    int volumeScale = gp.music.getVolumeScale() - 1;
+
+                    gp.music.setVolumeScale(volumeScale);
+                    ;
                     gp.music.checkVolume();
                     gp.playSE(9);
                 }
-                if (gp.ui.optionState.commandNum == 2 && gp.se.getVolumeScale() > 0) {
-                	int volumeScale = gp.se.getVolumeScale()-1;
-                	
+                if (gp.ui.commandNum == 2 && gp.se.getVolumeScale() > 0) {
+                    int volumeScale = gp.se.getVolumeScale() - 1;
+
                     gp.se.setVolumeScale(volumeScale);
 
                     gp.playSE(9);
@@ -180,14 +181,14 @@ public class KeyHandler implements KeyListener {
         }
         if (code == KeyEvent.VK_D) {
             if (gp.ui.subState == 0) {
-            	if (gp.ui.optionState.commandNum == 1 && gp.music.getVolumeScale() < 5) {
-                	int volumeScale = gp.music.getVolumeScale()+1;
+                if (gp.ui.commandNum == 1 && gp.music.getVolumeScale() < 5) {
+                    int volumeScale = gp.music.getVolumeScale() + 1;
                     gp.music.setVolumeScale(volumeScale);
                     gp.music.checkVolume();
                     gp.playSE(9);
                 }
-                if (gp.ui.optionState.commandNum == 2 && gp.se.getVolumeScale() < 5) {
-                	int volumeScale = gp.se.getVolumeScale()+1;
+                if (gp.ui.commandNum == 2 && gp.se.getVolumeScale() < 5) {
+                    int volumeScale = gp.se.getVolumeScale() + 1;
                     gp.se.setVolumeScale(volumeScale);
 
                     gp.playSE(9);
@@ -199,40 +200,40 @@ public class KeyHandler implements KeyListener {
 
     public void titleState(int code) {
 
-        if (gp.ui.menuState.titleScreenState == 0) {
+        if (gp.ui.titleScreenState == 0) {
             if (code == KeyEvent.VK_W) {
                 gp.playSE(9);
-                gp.ui.menuState.commandNum--;
-                if (gp.ui.menuState.commandNum < 0) {
-                    gp.ui.menuState.commandNum = 2;
+                gp.ui.commandNum--;
+                if (gp.ui.commandNum < 0) {
+                    gp.ui.commandNum = 2;
                 }
             }
             if (code == KeyEvent.VK_S) {
                 gp.playSE(9);
-                gp.ui.menuState.commandNum++;
-                if (gp.ui.menuState.commandNum > 2) {
-                    gp.ui.menuState.commandNum = 0;
+                gp.ui.commandNum++;
+                if (gp.ui.commandNum > 2) {
+                    gp.ui.commandNum = 0;
                 }
 
             }
             if (code == KeyEvent.VK_ENTER) {
 
-                if (gp.ui.menuState.commandNum == 0) {
+                if (gp.ui.commandNum == 0) {
                     gp.stopMusic();
                     gp.playMusic(13);
                     gp.gameState = gp.playState;
 
                 }
-                if (gp.ui.menuState.commandNum == 1) {
-                    gp.ui.menuState.titleScreenState = 1;
+                if (gp.ui.commandNum == 1) {
+                    gp.ui.titleScreenState = 1;
                 }
-                if (gp.ui.menuState.commandNum == 2) {
+                if (gp.ui.commandNum == 2) {
                     System.exit(0);
                 }
 
             }
 
-        } else if (gp.ui.menuState.titleScreenState == 1) {
+        } else if (gp.ui.titleScreenState == 1) {
             if (code == KeyEvent.VK_W) {
                 gp.playSE(14);
                 upPressed = true;
@@ -270,7 +271,7 @@ public class KeyHandler implements KeyListener {
 
             if (code == KeyEvent.VK_B) {
 
-                gp.ui.menuState.titleScreenState = 0;
+                gp.ui.titleScreenState = 0;
 
             }
 
@@ -318,28 +319,28 @@ public class KeyHandler implements KeyListener {
 
     private void playerInventory(int code) {
         if (code == KeyEvent.VK_W) {
-            if (gp.ui.characterSate.playerSlotRow != 0) {
-                gp.ui.characterSate.playerSlotRow--;
+            if (gp.ui.playerSlotRow != 0) {
+                gp.ui.playerSlotRow--;
                 gp.playSE(9);
             }
 
         }
         if (code == KeyEvent.VK_A) {
-            if (gp.ui.characterSate.playerSlotCol != 0) {
-                gp.ui.characterSate.playerSlotCol--;
+            if (gp.ui.playerSlotCol != 0) {
+                gp.ui.playerSlotCol--;
                 gp.playSE(9);
             }
         }
         if (code == KeyEvent.VK_S) {
-            if (gp.ui.characterSate.playerSlotRow != 3) {
-                gp.ui.characterSate.playerSlotRow++;
+            if (gp.ui.playerSlotRow != 3) {
+                gp.ui.playerSlotRow++;
                 gp.playSE(9);
             }
 
         }
         if (code == KeyEvent.VK_D) {
-            if (gp.ui.characterSate.playerSlotCol != 4) {
-                gp.ui.characterSate.playerSlotCol++;
+            if (gp.ui.playerSlotCol != 4) {
+                gp.ui.playerSlotCol++;
                 gp.playSE(9);
             }
         }

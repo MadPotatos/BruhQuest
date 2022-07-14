@@ -11,11 +11,8 @@ import entity.item.Mana;
 import main.GamePanel;
 
 public class Playing extends PaintUI {
-    private GamePanel gp;
     private BufferedImage heart_full, heart_half, heart_empty, mana_full, mana_empty;
 
-//    ArrayList<String> message = new ArrayList<String>();
-//    ArrayList<Integer> messageCounter = new ArrayList<Integer>();
     public Playing(GamePanel gp) {
     	super(gp);
         Item heart = new Heart(gp);

@@ -7,20 +7,20 @@ import java.io.IOException;
 
 import main.GamePanel;
 
-public class Option extends PaintUI{
+public class Option extends PaintUI {
 
-    public int commandNum = 0;
-    public int subState = 0;
-    public String currentDialogue = "";
-	public Option(GamePanel gp) {
-	        super(gp);
-	        
-	}	
-	@Override
-	public void draw(Graphics2D g) {
-		// TODO Auto-generated method stub
-		drawOptionsScreen(g);
-	}
+    // private int gp.ui.subState = 0;
+
+    public Option(GamePanel gp) {
+        super(gp);
+    }
+
+    @Override
+    public void draw(Graphics2D g) {
+        // TODO Auto-generated method stub
+        drawOptionsScreen(g);
+    }
+
     private void drawOptionsScreen(Graphics2D g2) {
 
         g2.setFont(g2.getFont().deriveFont(30F));
@@ -29,30 +29,31 @@ public class Option extends PaintUI{
         int frameY = gp.tileSize;
         int frameWidth = gp.tileSize * 8;
         int frameHeight = gp.tileSize * 10;
-        drawSubWindow(frameX, frameY, frameWidth, frameHeight,g2);
-        switch (subState) {
+        drawSubWindow(frameX, frameY, frameWidth, frameHeight, g2);
+        switch (gp.ui.subState) {
             case 0:
-                topOptions(frameX, frameY,g2);
+                topOptions(frameX, frameY, g2);
                 break;
             case 1:
-                fullScreenNotification(frameX, frameY,g2);
+                fullScreenNotification(frameX, frameY, g2);
                 break;
             case 2:
-                control(frameX, frameY,g2);
+                control(frameX, frameY, g2);
                 break;
             case 3:
-                endGameConfirmation(frameX, frameY,g2);
+                endGameConfirmation(frameX, frameY, g2);
                 break;
         }
         gp.keyH.enterPressed = false;
     }
-    private void topOptions(int frameX, int frameY,Graphics2D g2 ) {
+
+    private void topOptions(int frameX, int frameY, Graphics2D g2) {
         int textX;
         int textY;
         // TITLE
         g2.setColor(Color.black);
         String text = "Options";
-        textX = getXforCenteredText(text,g2);
+        textX = getXforCenteredText(text, g2);
         textY = frameY + gp.tileSize;
         g2.drawString(text, textX, textY);
 
@@ -60,7 +61,7 @@ public class Option extends PaintUI{
         textX = frameX + gp.tileSize;
         textY += gp.tileSize * 2;
         g2.drawString("Full Screen", textX, textY);
-        if (commandNum == 0) {
+        if (gp.ui.commandNum == 0) {
             g2.drawString(">", textX - 25, textY);
             if (gp.keyH.enterPressed == true) {
                 if (gp.fullscreenOn == false) {
@@ -69,7 +70,7 @@ public class Option extends PaintUI{
                 } else if (gp.fullscreenOn == true) {
                     gp.fullscreenOn = false;
                 }
-                subState = 1;
+                gp.ui.subState = 1;
             }
 
         }
@@ -77,44 +78,44 @@ public class Option extends PaintUI{
         // MUSIC
         textY += gp.tileSize;
         g2.drawString("Music", textX, textY);
-        if (commandNum == 1) {
+        if (gp.ui.commandNum == 1) {
             g2.drawString(">", textX - 25, textY);
         }
         // SE
         textY += gp.tileSize;
         g2.drawString("SE", textX, textY);
-        if (commandNum == 2) {
+        if (gp.ui.commandNum == 2) {
             g2.drawString(">", textX - 25, textY);
         }
         // CONTROL
         textY += gp.tileSize;
         g2.drawString("Control", textX, textY);
-        if (commandNum == 3) {
+        if (gp.ui.commandNum == 3) {
             g2.drawString(">", textX - 25, textY);
             if (gp.keyH.enterPressed == true) {
-                subState = 2;
-                commandNum = 0;
+                gp.ui.subState = 2;
+                gp.ui.commandNum = 0;
             }
         }
         // QUIT GAME
         textY += gp.tileSize;
         g2.drawString("Quit game", textX, textY);
-        if (commandNum == 4) {
+        if (gp.ui.commandNum == 4) {
             g2.drawString(">", textX - 25, textY);
             if (gp.keyH.enterPressed == true) {
-                subState = 3;
-                commandNum = 0;
+                gp.ui.subState = 3;
+                gp.ui.commandNum = 0;
 
             }
         }
         // BACK
         textY += gp.tileSize * 2;
         g2.drawString("Back", textX, textY);
-        if (commandNum == 5) {
+        if (gp.ui.commandNum == 5) {
             g2.drawString(">", textX - 25, textY);
             if (gp.keyH.enterPressed == true) {
                 gp.gameState = gp.playState;
-                commandNum = 0;
+                gp.ui.commandNum = 0;
             }
         }
         // FULL SCREEN CHECKBOX
@@ -146,36 +147,37 @@ public class Option extends PaintUI{
 
     }
 
-    private void fullScreenNotification(int frameX, int frameY,Graphics2D g2) {
+    private void fullScreenNotification(int frameX, int frameY, Graphics2D g2) {
         int textX = frameX + gp.tileSize;
         int textY = frameY + gp.tileSize;
         g2.setColor(Color.black);
-        currentDialogue = "The change will \n take effect after \n restarting the game.";
-        for (String line : currentDialogue.split("\n")) {
+
+        gp.ui.currentDialogue = "The change will \n take effect after \n restarting the game.";
+        for (String line : gp.ui.currentDialogue.split("\n")) {
             g2.drawString(line, textX, textY);
             textY += 40;
         }
         // BACK
         textY += gp.tileSize * 6;
         g2.drawString("Back", textX, textY);
-        if (commandNum == 0) {
+        if (gp.ui.commandNum == 0) {
             g2.drawString(">", textX - 25, textY);
             if (gp.keyH.enterPressed == true) {
-                subState = 0;
+                gp.ui.subState = 0;
             }
 
         }
 
     }
 
-    private void control(int frameX, int frameY,Graphics2D g2) {
+    private void control(int frameX, int frameY, Graphics2D g2) {
         g2.setFont(g2.getFont().deriveFont(28F));
         g2.setColor(Color.black);
         int textX;
         int textY;
         // TITLE
         String text = "Control";
-        textX = getXforCenteredText(text,g2);
+        textX = getXforCenteredText(text, g2);
         textY = frameY + gp.tileSize;
         g2.drawString(text, textX, textY);
         textX = frameX + gp.tileSize;
@@ -208,23 +210,23 @@ public class Option extends PaintUI{
         textX = frameX + gp.tileSize;
         textY += gp.tileSize * 1.5;
         g2.drawString("Back", textX, textY);
-        if (commandNum == 0) {
+        if (gp.ui.commandNum == 0) {
             g2.drawString(">", textX - 25, textY);
             if (gp.keyH.enterPressed == true) {
                 gp.playSE(9);
-                subState = 0;
-                commandNum = 3;
+                gp.ui.subState = 0;
+                gp.ui.commandNum = 3;
             }
         }
 
     }
 
-    private void endGameConfirmation(int frameX, int frameY,Graphics2D g2) {
+    private void endGameConfirmation(int frameX, int frameY, Graphics2D g2) {
         int textX = frameX + (int) (gp.tileSize * 1.5);
         int textY = frameY + gp.tileSize * 3;
         g2.setColor(Color.black);
-        currentDialogue = "Are you sure you \n want to quit?";
-        for (String line : currentDialogue.split("\n")) {
+        gp.ui.currentDialogue = "Are you sure you \n want to quit?";
+        for (String line : gp.ui.currentDialogue.split("\n")) {
             g2.drawString(line, textX, textY);
             textY += 40;
         }
@@ -233,10 +235,10 @@ public class Option extends PaintUI{
         textX = getXforCenteredText(text, g2);
         textY += gp.tileSize * 3;
         g2.drawString(text, textX, textY);
-        if (commandNum == 0) {
+        if (gp.ui.commandNum == 0) {
             g2.drawString(">", textX - 25, textY);
             if (gp.keyH.enterPressed == true) {
-                subState = 0;
+                gp.ui.subState = 0;
                 gp.playSE(9);
                 gp.gameState = gp.titleState;
                 gp.stopMusic();
@@ -248,15 +250,15 @@ public class Option extends PaintUI{
         textX = getXforCenteredText(text, g2);
         textY += gp.tileSize;
         g2.drawString(text, textX, textY);
-        if (commandNum == 1) {
+        if (gp.ui.commandNum == 1) {
             g2.drawString(">", textX - 25, textY);
             if (gp.keyH.enterPressed == true) {
-                subState = 0;
+                gp.ui.subState = 0;
                 gp.playSE(9);
-                commandNum = 4;
+                gp.ui.commandNum = 4;
             }
         }
 
-    }   
+    }
 
 }
