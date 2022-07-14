@@ -48,6 +48,7 @@ public class UI {
     public Loading loadingState;
     public Inform informState;
     public Dialogue dialogueSate;
+    public Trading tradingSate;
     public PaintUI painUI;
 
     public String currentDialogue = "";
@@ -64,6 +65,7 @@ public class UI {
 
     public UI(GamePanel gp) {
         this.gp = gp;
+        initClasses();
         try {
             InputStream is = getClass().getResourceAsStream("/Font/determination.ttf");
             MineCraft = Font.createFont(Font.TRUETYPE_FONT, is);
@@ -77,7 +79,25 @@ public class UI {
         coin = Coin.getImage();
 
     }
+    
+    private void initClasses() {
+    	menuState = new Menu(gp);
+    	playingState = new Playing(gp);
+    	characterSate =  new Character(gp);
+    	optionState = new Option(gp);
+ 
 
+
+
+        winState = new Winner(gp);
+        gameOverState = new GameOver(gp);
+        loadingState =  new Loading(gp);
+        informState = new Inform(gp) ;
+        dialogueSate = new Dialogue(gp) ;
+        tradingSate = new Trading(gp);
+        
+        
+	}
     public void addMessage(String text) {
         message.add(text);
         messageCounter.add(0);
@@ -88,71 +108,98 @@ public class UI {
         this.g2 = g2;
         g2.setFont(MineCraft);
         g2.setColor(Color.white);
-        
-       
-        
-        // TITLE STATE
+     // TITLE STATE
         if (gp.gameState == gp.titleState) {
-        	painUI = new Menu(gp);
-
-
+        	menuState.draw(g2);
         }
         // PLAY STATE
         if (gp.gameState == gp.playState) {
-
-            painUI = new Playing(gp);
-
+            playingState.draw(g2);
         }
         // DIALOGUE STATE
         if (gp.gameState == gp.dialogueState) {
- 
-            painUI = new Dialogue(gp);
-
+            //drawdialogueScreen();
+        	dialogueSate.draw(g2);
         }
         // INFORM STATE
         if (gp.gameState == gp.informState) {
-             //informState.draw(g2);
-             painUI = new Inform(gp);
-
-        }
-        // OPTIONS STATE
-        if (gp.gameState == gp.optionsState) {
-            //optionState.draw(g2);
-           
-            painUI = new Option(gp);
-
-        }
-        // GAME OVER STATE
-        if (gp.gameState == gp.gameOverState) {
-        	painUI = new GameOver(gp);
-
-            //gameOverState.draw(g2);
-        }
-        // LOADING STATE
-        if (gp.gameState == gp.loadingState) {
-            //loadingState.draw(g2);
-            painUI = new Loading(gp);
-
-        }
-        // TRADING STATE
-        if (gp.gameState == gp.tradingState) {
-            //drawTradeScreen();
-            painUI = new Trading(gp);
-
+           informState.draw(g2);
         }
         // CHARACTER STATE
         if (gp.gameState == gp.characterState) {
-            //characterSate.draw(g2);
-            painUI = new Character(gp);
-            
+
+            //drawCharacterScreen();
+        	characterSate.draw(g2);
+            //drawInventory(gp.player, true);
         }
-        // Winner
-        if (gp.gameState == gp.winState) {
-            //winState.draw(g2);
-            painUI = new Winner(gp);
-            
+        // OPTIONS STATE
+        if (gp.gameState == gp.optionsState) {
+            //drawOptionsScreen();
+            optionState.draw(g2);
         }
-        painUI.draw(g2);
+        // GAME OVER STATE
+        if (gp.gameState == gp.gameOverState) {
+        	
+            gameOverState.draw(g2);
+        }
+        // LOADING STATE
+        if (gp.gameState == gp.loadingState) {
+            loadingState.draw(g2);
+        }
+        // TRADING STATE
+        if (gp.gameState == gp.tradingState) {
+        	tradingSate.draw(g2);
+        }
+       
+        
+//        // TITLE STATE
+//        if (gp.gameState == gp.titleState) {
+//        	painUI = new Menu(gp);
+//        }
+//        // PLAY STATE
+//        if (gp.gameState == gp.playState) {
+//           painUI = new Playing(gp);
+//        }
+//        // DIALOGUE STATE
+//        if (gp.gameState == gp.dialogueState) {
+//            painUI = new Dialogue(gp);
+//        }
+//        // INFORM STATE
+//        if (gp.gameState == gp.informState) {
+//             //informState.draw(g2);
+//             painUI = new Inform(gp);
+//        }
+//        // OPTIONS STATE
+//        if (gp.gameState == gp.optionsState) {
+//            //optionState.draw(g2);
+//            painUI = new Option(gp);
+//        }
+//        // GAME OVER STATE
+//        if (gp.gameState == gp.gameOverState) {
+//        	painUI = new GameOver(gp);
+//            //gameOverState.draw(g2);
+//        }
+//        // LOADING STATE
+//        if (gp.gameState == gp.loadingState) {
+//            //loadingState.draw(g2);
+//            painUI = new Loading(gp);
+//        }
+//        // TRADING STATE
+//        if (gp.gameState == gp.tradingState) {
+//            //drawTradeScreen();
+//            painUI = new Trading(gp);
+//        }
+//        // CHARACTER STATE
+//        if (gp.gameState == gp.characterState) {
+//            //characterSate.draw(g2);
+//            painUI = new Character(gp);  
+//        }
+//        // Winner
+//        if (gp.gameState == gp.winState) {
+//            //winState.draw(g2);
+//            painUI = new Winner(gp); 
+//        }
+//        painUI.draw(g2);
     }
 
 
