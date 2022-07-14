@@ -9,11 +9,10 @@ import java.awt.image.BufferedImage;
 import main.GamePanel;
 import utilz.LoadSave;
 
-public class HowToPlay implements Statemethods{
-	private GamePanel gp;
-	Image bg;
+public class HowToPlay extends PaintUI{
+	private Image bg;
     public HowToPlay(GamePanel gp) {
-        this.gp = gp;
+        super(gp);
         
     }
 	public void draw(Graphics2D g2) {
@@ -121,10 +120,5 @@ public class HowToPlay implements Statemethods{
         y += gp.tileSize + 30;
         g2.drawString(" - SETTING", x, y);
     }
-	public int getXforCenteredText(String text,Graphics2D g2) {
-	    int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-	    int x = gp.screenWidth / 2 - length / 2;
-	    return x;
-	}
 
 }

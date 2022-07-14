@@ -9,13 +9,12 @@ import entity.item.Coin;
 import entity.item.Item;
 import main.GamePanel;
 
-public class Trading implements Statemethods{
-	private GamePanel gp;
-	int subState = 0;
+public class Trading extends PaintUI{
+	private int subState = 0;
     public int commandNum = 0;
     BufferedImage coin;
 	public Trading(GamePanel gp) {
-	        this.gp = gp;
+	        super(gp);
 	        Item Coin = new Coin(gp);
 	        coin = Coin.getImage();
 	        
@@ -25,5 +24,6 @@ public class Trading implements Statemethods{
 		// TODO Auto-generated method stub
 		//drawTradeScreen(g2);
 	}
+	
 	
 }

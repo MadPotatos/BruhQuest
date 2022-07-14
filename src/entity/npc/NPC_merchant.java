@@ -38,7 +38,6 @@ public class NPC_merchant extends Entity {
         inventory.add(new Axe(gp));
         inventory.add(new Key(gp));
         inventory.add(new SteelShield(gp));
-
     }
 
     public void speak() {

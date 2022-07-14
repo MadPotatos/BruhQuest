@@ -6,10 +6,10 @@ import java.awt.Graphics2D;
 
 import main.GamePanel;
 
-public class Winner implements Statemethods{
-	GamePanel gp;
+public class Winner extends PaintUI{
+
 	public Winner(GamePanel gp) {
-        this.gp = gp;
+        super(gp);
 	}
       
 	@Override
@@ -49,9 +49,4 @@ public class Winner implements Statemethods{
         y += gp.tileSize * 4;
         g2.drawString(text, x, y);
     }
-	public int getXforCenteredText(String text,Graphics2D g2) {
-	    int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-	    int x = gp.screenWidth / 2 - length / 2;
-	    return x;
-	}
 }

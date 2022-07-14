@@ -332,7 +332,7 @@ public abstract class Entity {
 		///////////////////
 
 		if (type == LoadSave.TYPE_MONSTER || type == LoadSave.TYPE_NPC || type == LoadSave.TYPE_PROJECTTILE
-				|| getName() == "Coin") {
+				|| getName() == "Coin" || getName() == "Portal") {
 			switch (direction) {
 				case "up":
 					image = animations[1][aniIndex];

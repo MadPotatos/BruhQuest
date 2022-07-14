@@ -7,13 +7,13 @@ import java.io.IOException;
 
 import main.GamePanel;
 
-public class Option implements Statemethods{
-	private GamePanel gp;
+public class Option extends PaintUI{
+
     public int commandNum = 0;
     public int subState = 0;
     public String currentDialogue = "";
 	public Option(GamePanel gp) {
-	        this.gp = gp;
+	        super(gp);
 	        
 	}	
 	@Override
@@ -257,31 +257,6 @@ public class Option implements Statemethods{
             }
         }
 
-    }
-    private void drawSubWindow(int x, int y, int width, int height, Graphics2D g2) {
-        Color c = new Color(255, 255, 255, 210);
-        g2.setColor(c);
-        g2.setColor(new Color(255, 255, 255, 200));
-
-        g2.fillRoundRect(x, y, width, height, 35, 35);
-
-        c = new Color(156, 100, 3);
-        g2.setColor(c);
-        g2.setStroke(new BasicStroke(5));
-        g2.drawRoundRect(x + 5, y + 5, width - 10, height - 10, 25, 25);
-        c = new Color(255, 148, 24);
-        g2.setColor(c);
-        g2.setStroke(new BasicStroke(5));
-        g2.drawRoundRect(x + 10, y + 10, width - 20, height - 20, 15, 15);
-
-    }
-
-    public int getXforCenteredText(String text, Graphics2D g2) {
-        int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-        int x = gp.screenWidth / 2 - length / 2;
-        return x;
-    }
-    
-    
+    }   
 
 }

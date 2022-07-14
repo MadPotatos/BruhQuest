@@ -5,11 +5,11 @@ import java.awt.Graphics2D;
 
 import main.GamePanel;
 
-public class Loading implements Statemethods{
-	private GamePanel gp;
+public class Loading extends PaintUI{
+
     private int counter = 0;
 	public Loading(GamePanel gp) {
-        this.gp = gp;
+        super(gp);
       
     }
 	@Override

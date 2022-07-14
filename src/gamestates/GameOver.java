@@ -6,11 +6,11 @@ import java.awt.Graphics2D;
 
 import main.GamePanel;
 
-public class GameOver implements Statemethods{
+public class GameOver extends PaintUI{
 	GamePanel gp;
 	public int commandNum = 0;
 	public GameOver(GamePanel gp) {
-        this.gp = gp;
+        super(gp);
 	}
 	@Override
 	public void draw(Graphics2D g2) {
@@ -54,10 +54,4 @@ public class GameOver implements Statemethods{
         }
         
     }
-	public int getXforCenteredText(String text,Graphics2D g2) {
-	    int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-	    int x = gp.screenWidth / 2 - length / 2;
-	    return x;
-	}
-
 }

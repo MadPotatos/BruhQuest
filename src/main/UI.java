@@ -25,6 +25,7 @@ import gamestates.Menu;
 import gamestates.Option;
 import gamestates.Playing;
 import gamestates.Winner;
+import utilz.LoadSave;
 
 public class UI {
     GamePanel gp;
@@ -257,6 +258,11 @@ public class UI {
                     gp.playSE(9);
                     gp.player.coin -= npc.inventory.get(itemIndex).getPrice();
                     gp.player.inventory.add(npc.inventory.get(itemIndex));
+                    if(npc.inventory.get(itemIndex).getType() == LoadSave.TYPE_AXE || 
+                    		npc.inventory.get(itemIndex).getType() == LoadSave.TYPE_SHIELD
+                    		||npc.inventory.get(itemIndex).getType() == LoadSave.TYPE_SWORD) {
+                    	npc.inventory.remove(itemIndex);
+                    }
 
                 }
             }

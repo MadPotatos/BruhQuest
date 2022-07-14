@@ -13,16 +13,14 @@ import javax.swing.ImageIcon;
 
 import main.GamePanel;
 import utilz.LoadSave;
-public class Menu implements Statemethods{
-	GamePanel gp;
+public class Menu extends PaintUI{
 	public int titleScreenState = 0;
 	private Image bg;
-
     public int commandNum = 0;
 
     public Menu(GamePanel gp) {
-        this.gp = gp;
-            try {
+        super(gp);
+        try {
             bg = new ImageIcon(
                     getClass().getResource("/ui/bg.gif")).getImage();
         } catch (Exception e) {
@@ -41,7 +39,7 @@ public class Menu implements Statemethods{
 		}
 		
 	}
-	public void drawTitleScreen(Graphics2D g2) {
+	private void drawTitleScreen(Graphics2D g2) {
 		 if (titleScreenState == 0) {
 	            g2.drawImage(bg, 0, 0, gp.screenWidth, gp.screenHeight, null);
 	            g2.setColor(new Color(0, 0, 0, 130));
@@ -102,7 +100,7 @@ public class Menu implements Statemethods{
 	}
 	
 	
-	 private void drawHowToPlay(Graphics2D g2) {
+	private void drawHowToPlay(Graphics2D g2) {
 	        BufferedImage image;
 	        g2.drawImage(bg, 0, 0, gp.screenWidth, gp.screenHeight, null);
 	        g2.setColor(new Color(0, 0, 0, 160));
@@ -207,12 +205,5 @@ public class Menu implements Statemethods{
 	        y += gp.tileSize + 30;
 	        g2.drawString(" - SETTING", x, y);
 	    }
-	
-	public int getXforCenteredText(String text,Graphics2D g2) {
-	    int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-	    int x = gp.screenWidth / 2 - length / 2;
-	    return x;
-	}
-
 }
 

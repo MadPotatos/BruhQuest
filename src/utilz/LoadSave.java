@@ -44,6 +44,7 @@ public class LoadSave {
 	// OBJECT
 	// COIN
 	public static final String COIN = "/Objects/Coin2.png";
+	public static final String POTAL = "/Objects/Green_Portal.png";
 
 	// UI
 

@@ -4,21 +4,20 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
 import entity.item.Heart;
 import entity.item.Item;
 import entity.item.Mana;
 import main.GamePanel;
 
-public class Playing implements Statemethods {
+public class Playing extends PaintUI {
     private GamePanel gp;
-    BufferedImage heart_full, heart_half, heart_empty, mana_full, mana_empty;
+    private BufferedImage heart_full, heart_half, heart_empty, mana_full, mana_empty;
 
 //    ArrayList<String> message = new ArrayList<String>();
 //    ArrayList<Integer> messageCounter = new ArrayList<Integer>();
     public Playing(GamePanel gp) {
-        this.gp = gp;
+    	super(gp);
         Item heart = new Heart(gp);
         heart_full = heart.getImage();
         heart_half = heart.getImage2();
