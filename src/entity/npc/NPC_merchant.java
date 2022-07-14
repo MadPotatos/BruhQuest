@@ -1,7 +1,5 @@
 package entity.npc;
 
-import java.awt.image.BufferedImage;
-
 import entity.Entity;
 import entity.item.HealingPotion;
 import entity.item.Key;

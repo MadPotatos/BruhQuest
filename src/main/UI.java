@@ -18,7 +18,7 @@ import entity.item.*;
 import gamestates.Character;
 import gamestates.Dialogue;
 import gamestates.GameOver;
-
+import gamestates.Gamestate;
 import gamestates.Inform;
 import gamestates.Loading;
 import gamestates.Menu;
@@ -64,7 +64,6 @@ public class UI {
 
     public UI(GamePanel gp) {
         this.gp = gp;
-        initClasses();
         try {
             InputStream is = getClass().getResourceAsStream("/Font/determination.ttf");
             MineCraft = Font.createFont(Font.TRUETYPE_FONT, is);
@@ -76,23 +75,7 @@ public class UI {
         // CREATE HUD OBJECT
         Item Coin = new Coin(gp);
         coin = Coin.getImage();
-      
 
-    }
-
-    private void initClasses() {
-        menuState = new Menu(gp);
-        playingState = new Playing(gp);
-        optionState = new Option(gp);
-
-        winState = new Winner(gp);
-        gameOverState = new GameOver(gp);
-        loadingState = new Loading(gp);
-
-        informState = new Inform(gp);
-
-        characterSate = new Character(gp);
-        dialogueSate  = new Dialogue(gp);
     }
 
     public void addMessage(String text) {
@@ -105,7 +88,9 @@ public class UI {
         this.g2 = g2;
         g2.setFont(MineCraft);
         g2.setColor(Color.white);
-
+        
+       
+        
         // TITLE STATE
         if (gp.gameState == gp.titleState) {
         	painUI = new Menu(gp);
