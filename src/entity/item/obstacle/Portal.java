@@ -4,7 +4,6 @@ import java.awt.image.BufferedImage;
 
 import entity.item.Item;
 import main.GamePanel;
-import main.UtilityTool;
 import utilz.*;
 
 public class Portal extends Item {
@@ -17,8 +16,7 @@ public class Portal extends Item {
         this.gp = gp;
         setType(LoadSave.TYPE_OBSTACLE);
         setName("Portal");
-        setImage(LoadSave.setup("/Objects/portal", gp.tileSize, gp.tileSize));
-        down1 = LoadSave.setup("/Objects/portal", gp.tileSize * 3, gp.tileSize * 3);
+
         setCollision(true);
         solidArea.x = gp.tileSize;
         solidArea.y = 10;

@@ -7,8 +7,6 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
-import main.UtilityTool;
-
 public class LoadSave {
 	public static final int TYPE_PLAYER = 0;
 	public static final int TYPE_NPC = 1;
@@ -20,6 +18,7 @@ public class LoadSave {
 	public static final int TYPE_PICKUPONLY = 7;
 	public static final int TYPE_PROJECTTILE = 8;
 	public static final int TYPE_OBSTACLE = 9;
+	public static final int TYPE_SCROLL = 10;
 
 	// PLAYER
 	public static final String PLAYER_WALK = "/Player/knight_walk.png";

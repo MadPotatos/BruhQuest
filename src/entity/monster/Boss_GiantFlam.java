@@ -5,8 +5,8 @@ import java.util.Random;
 
 import entity.item.Key;
 import main.GamePanel;
-import main.UtilityTool;
 import utilz.LoadSave;
+import utilz.UtilityTool;
 
 public class Boss_GiantFlam extends Monster {
     GamePanel gp;

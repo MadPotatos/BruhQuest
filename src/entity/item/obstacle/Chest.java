@@ -32,7 +32,7 @@ public class Chest extends Item {
         if (opened == false) {
             gp.playSE(3);
             StringBuilder sb = new StringBuilder();
-            sb.append("You opened the chest and find a " + loot.getName() + "!");
+            sb.append("You opened the chest and find a\n" + loot.getName() + "!");
             if (gp.player.inventory.size() == gp.player.maxInventorySize) {
                 sb.append("\nYour inventory is full.");
             } else {

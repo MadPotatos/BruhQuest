@@ -8,8 +8,10 @@ import entity.item.HealingPotion;
 import entity.item.Item;
 import entity.item.Key;
 import entity.item.weapon.BeginnerSword;
+import entity.item.weapon.Scroll_Fire;
+import entity.item.weapon.Scroll_Ice;
+import entity.item.weapon.Scroll_Rock;
 import entity.item.weapon.WoodenShield;
-import entity.projectile.Shuriken;
 
 import java.awt.AlphaComposite;
 import main.GamePanel;
@@ -69,6 +71,9 @@ public class Player extends Entity {
 		inventory.clear();
 		inventory.add(currentWeapon);
 		inventory.add(currentShield);
+		inventory.add(currentScroll);
+		inventory.add(new Scroll_Ice(gp));
+		inventory.add(new Scroll_Rock(gp));
 		inventory.add(new Key(gp));
 		inventory.add(new HealingPotion(gp));
 		inventory.add(new HealingPotion(gp));
@@ -94,9 +99,8 @@ public class Player extends Entity {
 		coin = 500;
 		currentWeapon = new BeginnerSword(gp);
 		currentShield = new WoodenShield(gp);
-
-		// projectile = new EnergyBall(gp);
-		projectile = new Shuriken(gp);
+		currentScroll = new Scroll_Fire(gp);
+		projectile = currentScroll.getProjectile();
 		attack = getAttack(); // attack = strength + weapon attack
 		defense = getDefense(); // defense = endurance + shield defense
 		getPlayerAttackImage();
@@ -378,6 +382,11 @@ public class Player extends Entity {
 				attack = getAttack();
 				getPlayerAttackImage();
 			}
+			if (selectedItem.getType() == LoadSave.TYPE_SCROLL) {
+				currentScroll = selectedItem;
+				projectile = selectedItem.getProjectile();
+			}
+
 			if (selectedItem.getType() == LoadSave.TYPE_SHIELD) {
 				currentShield = selectedItem;
 				defense = getDefense();

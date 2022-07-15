@@ -3,7 +3,7 @@ package entity.item;
 import java.awt.image.BufferedImage;
 
 import entity.Entity;
-
+import entity.projectile.Projectile;
 import main.GamePanel;;
 
 public class Item extends Entity {
@@ -114,6 +114,10 @@ public class Item extends Entity {
 
 	public void setPrice(int price) {
 		this.price = price;
+	}
+
+	public Projectile getProjectile() {
+		return projectile;
 	}
 
 }
