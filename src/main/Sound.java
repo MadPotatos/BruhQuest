@@ -11,10 +11,19 @@ public class Sound {
     Clip clip;
     URL soundURL[] = new URL[30];
     FloatControl fc;
-    int volumeScale = 3;
-    float volume;
+    private int volumeScale;
+    public int getVolumeScale() {
+		return volumeScale;
+	}
+
+	public void setVolumeScale(int volumeScale) {
+		this.volumeScale = volumeScale;
+	}
+
+	float volume;
 
     public Sound() {
+    	volumeScale = 3;
         soundURL[0] = getClass().getResource("/Sound/menu.wav");
         soundURL[1] = getClass().getResource("/Sound/coin.wav");
         soundURL[2] = getClass().getResource("/Sound/powerup.wav");

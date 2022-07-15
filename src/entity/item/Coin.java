@@ -4,8 +4,8 @@ import java.awt.image.BufferedImage;
 
 import entity.Entity;
 import main.GamePanel;
-import main.UtilityTool;
 import utilz.LoadSave;
+import utilz.UtilityTool;
 
 public class Coin extends Item {
     private GamePanel gp;

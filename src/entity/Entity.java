@@ -10,10 +10,10 @@ import java.awt.Graphics2D;
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import main.GamePanel;
-import main.UtilityTool;
 
 import java.awt.Rectangle;
 import utilz.LoadSave;
+import utilz.UtilityTool;
 
 public abstract class Entity {
 	GamePanel gp;
@@ -72,6 +72,7 @@ public abstract class Entity {
 	public int coin;
 	public Item currentWeapon;
 	public Item currentShield;
+	public Item currentScroll;
 	public Projectile projectile;
 	public final int maxInventorySize = 20;
 	// ITEM ATTRIBUTE
@@ -332,7 +333,7 @@ public abstract class Entity {
 		///////////////////
 
 		if (type == LoadSave.TYPE_MONSTER || type == LoadSave.TYPE_NPC || type == LoadSave.TYPE_PROJECTTILE
-				|| getName() == "Coin") {
+				|| getName() == "Coin" || getName() == "Portal") {
 			switch (direction) {
 				case "up":
 					image = animations[1][aniIndex];
@@ -401,7 +402,7 @@ public abstract class Entity {
 				gp.player.worldY < gp.player.screenY ||
 				rightOffset > gp.worldWidth - gp.player.worldX ||
 				bottomOffset > gp.worldHeight - gp.player.worldY) {
-			g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+			g2.drawImage(image, screenX, screenY, null);
 		}
 	}
 

@@ -2,6 +2,7 @@ package main;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import utilz.*;
 
 public class KeyHandler implements KeyListener {
 
@@ -17,51 +18,49 @@ public class KeyHandler implements KeyListener {
 
     public void keyPressed(KeyEvent e) {
         // TODO Auto-generated method stub
+
         int code = e.getKeyCode();
         // TITLE STATE
-        if (gp.gameState == gp.titleState) {
-            titleState(code);
-        }
-        // PLAY STATE
-        else if (gp.gameState == gp.playState) {
-            playState(code);
-        }
+        switch (Gamestate.state) {
+            case CHARACTER:
+                characterState(code);
+                break;
+            case DIALOUE:
+                dialogueState(code);
+                break;
+            case GAMEOVER:
+                gameOverState(code);
+                break;
+            case INFORM:
+                dialogueState(code);
+                break;
+            case LOADING:
+                break;
+            case MENU:
+                titleState(code);
+                break;
+            case OPTIONS:
+                optionsState(code);
+                break;
+            case PLAYING:
+                playState(code);
+                break;
+            case TRADING:
+                tradingState(code);
+                break;
+            case WINNER:
+                winState(code);
+                break;
+            default:
+                break;
 
-        // DIALOGUE
-        else if (gp.gameState == gp.dialogueState) {
-            dialogueState(code);
-        }
-        // CHARACTER
-        else if (gp.gameState == gp.characterState) {
-            characterState(code);
-        }
-        // OPTIONS
-        else if (gp.gameState == gp.optionsState) {
-            optionsState(code);
-        }
-        // GAME OVER
-        else if (gp.gameState == gp.gameOverState) {
-
-            gameOverState(code);
-        }
-        // TRADING
-        else if (gp.gameState == gp.tradingState) {
-            tradingState(code);
-        }
-        // INFORM
-        else if (gp.gameState == gp.informState) {
-            dialogueState(code);
-        }
-        // WIN
-        else if (gp.gameState == gp.winState) {
-            winState(code);
         }
     }
 
     private void winState(int code) {
         if (code == KeyEvent.VK_ENTER) {
             gp.playMusic(0);
-            gp.gameState = gp.titleState;
+            Gamestate.state = Gamestate.MENU;
             gp.restart();
         }
     }
@@ -119,12 +118,12 @@ public class KeyHandler implements KeyListener {
         }
         if (code == KeyEvent.VK_ENTER) {
             if (gp.ui.commandNum == 0) {
-                gp.gameState = gp.playState;
+                Gamestate.state = Gamestate.PLAYING;
                 gp.retry();
                 gp.playMusic(13);
             } else if (gp.ui.commandNum == 1) {
                 gp.playMusic(0);
-                gp.gameState = gp.titleState;
+                Gamestate.state = Gamestate.MENU;
                 gp.restart();
             }
         }
@@ -132,7 +131,7 @@ public class KeyHandler implements KeyListener {
 
     private void optionsState(int code) {
         if (code == KeyEvent.VK_ESCAPE) {
-            gp.gameState = gp.playState;
+            Gamestate.state = Gamestate.PLAYING;
         }
         if (code == KeyEvent.VK_ENTER) {
             enterPressed = true;
@@ -162,13 +161,18 @@ public class KeyHandler implements KeyListener {
         }
         if (code == KeyEvent.VK_A) {
             if (gp.ui.subState == 0) {
-                if (gp.ui.commandNum == 1 && gp.music.volumeScale > 0) {
-                    gp.music.volumeScale--;
+                if (gp.ui.commandNum == 1 && gp.music.getVolumeScale() > 0) {
+                    int volumeScale = gp.music.getVolumeScale() - 1;
+
+                    gp.music.setVolumeScale(volumeScale);
+                    ;
                     gp.music.checkVolume();
                     gp.playSE(9);
                 }
-                if (gp.ui.commandNum == 2 && gp.se.volumeScale > 0) {
-                    gp.se.volumeScale--;
+                if (gp.ui.commandNum == 2 && gp.se.getVolumeScale() > 0) {
+                    int volumeScale = gp.se.getVolumeScale() - 1;
+
+                    gp.se.setVolumeScale(volumeScale);
 
                     gp.playSE(9);
                 }
@@ -177,13 +181,15 @@ public class KeyHandler implements KeyListener {
         }
         if (code == KeyEvent.VK_D) {
             if (gp.ui.subState == 0) {
-                if (gp.ui.commandNum == 1 && gp.music.volumeScale < 5) {
-                    gp.music.volumeScale++;
+                if (gp.ui.commandNum == 1 && gp.music.getVolumeScale() < 5) {
+                    int volumeScale = gp.music.getVolumeScale() + 1;
+                    gp.music.setVolumeScale(volumeScale);
                     gp.music.checkVolume();
                     gp.playSE(9);
                 }
-                if (gp.ui.commandNum == 2 && gp.se.volumeScale < 5) {
-                    gp.se.volumeScale++;
+                if (gp.ui.commandNum == 2 && gp.se.getVolumeScale() < 5) {
+                    int volumeScale = gp.se.getVolumeScale() + 1;
+                    gp.se.setVolumeScale(volumeScale);
 
                     gp.playSE(9);
                 }
@@ -215,7 +221,7 @@ public class KeyHandler implements KeyListener {
                 if (gp.ui.commandNum == 0) {
                     gp.stopMusic();
                     gp.playMusic(13);
-                    gp.gameState = gp.playState;
+                    Gamestate.state = Gamestate.PLAYING;
 
                 }
                 if (gp.ui.commandNum == 1) {
@@ -286,8 +292,9 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_D) {
             rightPressed = true;
         }
+
         if (code == KeyEvent.VK_C) {
-            gp.gameState = gp.characterState;
+            Gamestate.state = Gamestate.CHARACTER;
         }
         if (code == KeyEvent.VK_ENTER) {
             enterPressed = true;
@@ -298,7 +305,7 @@ public class KeyHandler implements KeyListener {
 
         }
         if (code == KeyEvent.VK_ESCAPE) {
-            gp.gameState = gp.optionsState;
+            Gamestate.state = Gamestate.OPTIONS;
 
         }
 
@@ -307,7 +314,7 @@ public class KeyHandler implements KeyListener {
     public void dialogueState(int code) {
 
         if (code == KeyEvent.VK_ENTER) {
-            gp.gameState = gp.playState;
+            Gamestate.state = Gamestate.PLAYING;
         }
     }
 
@@ -371,7 +378,7 @@ public class KeyHandler implements KeyListener {
 
     public void characterState(int code) {
         if (code == KeyEvent.VK_C) {
-            gp.gameState = gp.playState;
+            Gamestate.state = Gamestate.PLAYING;
         }
 
         if (code == KeyEvent.VK_ENTER) {

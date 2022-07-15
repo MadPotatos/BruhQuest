@@ -2,7 +2,7 @@ package entity.item.obstacle;
 
 import entity.item.Item;
 import main.GamePanel;
-import utilz.LoadSave;
+import utilz.*;
 
 public class Door extends Item {
     GamePanel gp;
@@ -25,7 +25,7 @@ public class Door extends Item {
     }
 
     public void interact() {
-        gp.gameState = gp.informState;
+        Gamestate.state = Gamestate.INFORM;
         gp.ui.currentDialogue = "You need a key to open the door.";
     }
 }

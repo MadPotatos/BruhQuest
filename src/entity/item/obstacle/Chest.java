@@ -2,7 +2,7 @@ package entity.item.obstacle;
 
 import entity.item.Item;
 import main.GamePanel;
-import utilz.LoadSave;
+import utilz.*;
 
 public class Chest extends Item {
     GamePanel gp;
@@ -28,11 +28,11 @@ public class Chest extends Item {
     }
 
     public void interact() {
-        gp.gameState = gp.informState;
+        Gamestate.state = Gamestate.INFORM;
         if (opened == false) {
             gp.playSE(3);
             StringBuilder sb = new StringBuilder();
-            sb.append("You opened the chest and find a " + loot.getName() + "!");
+            sb.append("You opened the chest and find a\n" + loot.getName() + "!");
             if (gp.player.inventory.size() == gp.player.maxInventorySize) {
                 sb.append("\nYour inventory is full.");
             } else {

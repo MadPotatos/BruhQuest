@@ -8,12 +8,15 @@ import entity.item.HealingPotion;
 import entity.item.Item;
 import entity.item.Key;
 import entity.item.weapon.BeginnerSword;
+import entity.item.weapon.Scroll_Fire;
+import entity.item.weapon.Scroll_Ice;
+import entity.item.weapon.Scroll_Rock;
 import entity.item.weapon.WoodenShield;
-import entity.projectile.Shuriken;
 
 import java.awt.AlphaComposite;
 import main.GamePanel;
 import main.KeyHandler;
+import utilz.Gamestate;
 import utilz.LoadSave;
 
 public class Player extends Entity {
@@ -22,7 +25,6 @@ public class Player extends Entity {
 	public final int screenX;
 	public final int screenY;
 
-	private int hasKey = 0;
 	private int standCounter = 0;
 	private boolean attackCanceled = false;
 	private boolean attacking = false;
@@ -69,6 +71,9 @@ public class Player extends Entity {
 		inventory.clear();
 		inventory.add(currentWeapon);
 		inventory.add(currentShield);
+		inventory.add(currentScroll);
+		inventory.add(new Scroll_Ice(gp));
+		inventory.add(new Scroll_Rock(gp));
 		inventory.add(new Key(gp));
 		inventory.add(new HealingPotion(gp));
 		inventory.add(new HealingPotion(gp));
@@ -94,9 +99,8 @@ public class Player extends Entity {
 		coin = 500;
 		currentWeapon = new BeginnerSword(gp);
 		currentShield = new WoodenShield(gp);
-
-		// projectile = new EnergyBall(gp);
-		projectile = new Shuriken(gp);
+		currentScroll = new Scroll_Fire(gp);
+		projectile = currentScroll.getProjectile();
 		attack = getAttack(); // attack = strength + weapon attack
 		defense = getDefense(); // defense = endurance + shield defense
 		getPlayerAttackImage();
@@ -251,7 +255,7 @@ public class Player extends Entity {
 			mana = maxMana;
 		}
 		if (life <= 0) {
-			gp.gameState = gp.gameOverState;
+			Gamestate.state = Gamestate.GAMEOVER;
 			gp.ui.commandNum = -1;
 			gp.stopMusic();
 			gp.playSE(12);
@@ -362,7 +366,8 @@ public class Player extends Entity {
 			life = maxLife;
 			mana = maxMana;
 			gp.playSE(8);
-			gp.gameState = gp.informState;
+			Gamestate.state = Gamestate.INFORM;
+
 			gp.ui.currentDialogue = "Level Up! \n Raise all attributes by 1 point. \n Press Enter to continue.";
 		}
 	}
@@ -377,6 +382,11 @@ public class Player extends Entity {
 				attack = getAttack();
 				getPlayerAttackImage();
 			}
+			if (selectedItem.getType() == LoadSave.TYPE_SCROLL) {
+				currentScroll = selectedItem;
+				projectile = selectedItem.getProjectile();
+			}
+
 			if (selectedItem.getType() == LoadSave.TYPE_SHIELD) {
 				currentShield = selectedItem;
 				defense = getDefense();
@@ -442,7 +452,7 @@ public class Player extends Entity {
 			if (i != 999) {
 				attackCanceled = true;
 
-				gp.gameState = gp.dialogueState;
+				Gamestate.state = Gamestate.DIALOUE;
 				gp.npc[gp.currentMap][i].speak();
 
 			}
@@ -567,14 +577,6 @@ public class Player extends Entity {
 
 	public int getScreenY() {
 		return screenY;
-	}
-
-	public int getHasKey() {
-		return hasKey;
-	}
-
-	public void setHasKey(int hasKey) {
-		this.hasKey = hasKey;
 	}
 
 	public boolean isAttackCanceled() {

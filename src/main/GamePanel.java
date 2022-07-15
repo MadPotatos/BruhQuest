@@ -19,7 +19,9 @@ import entity.Player;
 import entity.item.Item;
 import entity.monster.Monster;
 import entity.tile_interactive.InteractiveTile;
+import gamestates.UI;
 import tile.TileManager;
+import utilz.*;
 
 public class GamePanel extends JPanel implements Runnable {
 
@@ -49,9 +51,9 @@ public class GamePanel extends JPanel implements Runnable {
     // SYSTEM
     public TileManager tileM = new TileManager(this);
     public KeyHandler keyH = new KeyHandler(this);
-    Sound music = new Sound();
-    Sound se = new Sound();
-    Config config = new Config(this);
+    public Sound music = new Sound();
+    public Sound se = new Sound();
+    public Config config = new Config(this);
     public CollisionChecker cChecker = new CollisionChecker(this);
     public AssetSetter aSetter = new AssetSetter(this);
     public UI ui = new UI(this);
@@ -65,21 +67,20 @@ public class GamePanel extends JPanel implements Runnable {
     public Monster monster[][] = new Monster[maxMap][20];
     public InteractiveTile iTile[][] = new InteractiveTile[maxMap][50];
     public ArrayList<Entity> projectileList = new ArrayList<>();
-    public ArrayList<Entity> particleList = new ArrayList<>();
     ArrayList<Entity> entityList = new ArrayList<>();
 
     // GAME STATE
-    public int gameState;
-    public final int titleState = 0;
-    public final int playState = 1;
-    public final int dialogueState = 2;
-    public final int characterState = 3;
-    public final int optionsState = 4;
-    public final int gameOverState = 5;
-    public final int loadingState = 6;
-    public final int tradingState = 7;
-    public final int informState = 8;
-    public final int winState = 9;
+    // public int gameState;
+    // public final int titleState = 0;
+    // public final int playState = 1;
+    // public final int dialogueState = 2;
+    // public final int characterState = 3;
+    // public final int optionsState = 4;
+    // public final int gameOverState = 5;
+    // public final int loadingState = 6;
+    // public final int tradingState = 7;
+    // public final int informState = 8;
+    // public final int winState = 9;
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -95,7 +96,7 @@ public class GamePanel extends JPanel implements Runnable {
         aSetter.setNPC();
         aSetter.setMonster();
         aSetter.setInteractiveTile();
-        gameState = titleState;
+        Gamestate.state = Gamestate.MENU;
         playMusic(0);
         tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_RGB);
         g2 = (Graphics2D) tempScreen.getGraphics();
@@ -170,7 +171,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void update() {
-        if (gameState == playState) {
+        if (Gamestate.state == Gamestate.PLAYING) {
 
             player.update();
             // NPC
@@ -200,16 +201,7 @@ public class GamePanel extends JPanel implements Runnable {
                     }
                 }
             }
-            for (int i = 0; i < particleList.size(); i++) {
-                if (particleList.get(i) != null) {
-                    if (particleList.get(i).alive == true) {
-                        particleList.get(i).update();
-                    }
-                    if (particleList.get(i).alive == false) {
-                        particleList.remove(i);
-                    }
-                }
-            }
+
             for (int i = 0; i < iTile[1].length; i++) {
                 if (iTile[currentMap][i] != null) {
                     iTile[currentMap][i].update();
@@ -221,7 +213,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void drawToTempScreen() {
         // Title Screen
-        if (gameState == titleState) {
+        if (Gamestate.state == Gamestate.MENU) {
 
             ui.draw(g2);
         }
@@ -261,11 +253,7 @@ public class GamePanel extends JPanel implements Runnable {
                     entityList.add(projectileList.get(i));
                 }
             }
-            for (int i = 0; i < particleList.size(); i++) {
-                if (particleList.get(i) != null) {
-                    entityList.add(particleList.get(i));
-                }
-            }
+
             // sort
             Collections.sort(entityList, new Comparator<Entity>() {
 

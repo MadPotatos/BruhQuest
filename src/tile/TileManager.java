@@ -7,7 +7,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import javax.imageio.ImageIO;
 import main.GamePanel;
-import main.UtilityTool;
+import utilz.UtilityTool;
 
 public class TileManager {
     private GamePanel gp;

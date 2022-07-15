@@ -15,7 +15,7 @@ public class Shuriken extends Projectile {
         speed = 10;
         maxLife = 40;
         life = maxLife;
-        attack = 2;
+        attack = 1;
         setUseCost(1);
         setAniSpeed(4);
         alive = false;

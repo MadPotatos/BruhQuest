@@ -4,8 +4,6 @@ import entity.Entity;
 import main.GamePanel;
 import utilz.LoadSave;
 
-import java.awt.Color;
-
 public class Rock extends Projectile {
     private GamePanel gp;
 
@@ -16,7 +14,7 @@ public class Rock extends Projectile {
         speed = 6;
         maxLife = 40;
         life = maxLife;
-        attack = 2;
+        attack = 3;
         setUseCost(1);
         alive = false;
         getImage();
