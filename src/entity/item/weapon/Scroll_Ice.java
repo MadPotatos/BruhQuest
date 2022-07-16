@@ -7,7 +7,6 @@ import entity.projectile.*;
 
 public class Scroll_Ice extends Item {
     GamePanel gp;
-    Projectile projectile;
 
     public Scroll_Ice(GamePanel gp) {
         super(gp);
@@ -16,11 +15,7 @@ public class Scroll_Ice extends Item {
         setName("Ice Scroll");
         down1 = LoadSave.setup("/Objects/ScrollIce", gp.tileSize, gp.tileSize);
         setDescription("[" + getName() + "]\n" + "Shoot an ice blast");
-        projectile = new EnergyBall(gp);
-    }
-
-    public Projectile getProjectile() {
-        return projectile;
+        setProjectile(new EnergyBall(gp));
     }
 
 }

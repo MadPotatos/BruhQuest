@@ -16,6 +16,7 @@ public class Item extends Entity {
 	private String description = "";
 	private int useCost;
 	private int price;
+	private Projectile projectile;
 
 	// private int type;
 
@@ -114,6 +115,10 @@ public class Item extends Entity {
 
 	public void setPrice(int price) {
 		this.price = price;
+	}
+
+	public void setProjectile(Projectile projectile) {
+		this.projectile = projectile;
 	}
 
 	public Projectile getProjectile() {
