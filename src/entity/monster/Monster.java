@@ -7,7 +7,7 @@ import utilz.LoadSave;
 
 public abstract class Monster extends Entity implements Behavior {
     private GamePanel gp;
-
+    public int exp;
     public Monster(GamePanel gp) {
         super(gp);
         this.gp = gp;

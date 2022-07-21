@@ -26,6 +26,20 @@ public class Player extends Entity {
 	public final int screenX;
 	public final int screenY;
 
+	public int ammo;
+	public int level;
+	public int strength;
+	public int endurance;
+	public int exp;
+	public int nextLevelExp;
+	public int coin;
+	public int maxMana;
+	
+	
+	public Item currentWeapon;
+	public Item currentShield;
+	public Item currentScroll;
+	
 	private int standCounter = 0;
 	private boolean attackCanceled = false;
 	private boolean attacking = false;

@@ -57,9 +57,9 @@ public class Character extends PaintUI {
 		// Draw player's items
 		for (int i = 0; i < entity.inventory.size(); i++) {
 			// Equiped item
-			if (entity.inventory.get(i) == entity.currentWeapon
-					|| entity.inventory.get(i) == entity.currentShield
-					|| entity.inventory.get(i) == entity.currentScroll) {
+			if (entity.inventory.get(i) == gp.player.currentWeapon
+					|| entity.inventory.get(i) == gp.player.currentShield
+					|| entity.inventory.get(i) == gp.player.currentScroll) {
 				g2.setColor(new Color(255, 148, 24));
 				g2.fillRoundRect(slotX, slotY, gp.tileSize, gp.tileSize, 10, 10);
 			}

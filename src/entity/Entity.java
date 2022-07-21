@@ -60,19 +60,11 @@ public abstract class Entity {
 	public int maxLife;
 	public int life;
 	public int mana;
-	public int maxMana;
-	public int ammo;
-	public int level;
-	public int strength;
-	public int endurance;
 	public int attack;
 	public int defense;
-	public int exp;
-	public int nextLevelExp;
-	public int coin;
-	public Item currentWeapon;
-	public Item currentShield;
-	public Item currentScroll;
+
+
+	
 	public Projectile projectile;
 	public final int maxInventorySize = 20;
 	// ITEM ATTRIBUTE
