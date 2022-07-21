@@ -15,9 +15,9 @@ import javax.swing.JPanel;
 
 import ai.PathFinder;
 import entity.Entity;
-import entity.Player;
 import entity.item.Item;
 import entity.monster.Monster;
+import entity.player.Player;
 import entity.tile_interactive.InteractiveTile;
 import gamestates.UI;
 import tile.TileManager;

@@ -1,9 +1,10 @@
-package entity;
+package entity.player;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
+import entity.Entity;
 import entity.item.HealingPotion;
 import entity.item.Item;
 import entity.item.Key;
