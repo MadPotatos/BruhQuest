@@ -22,7 +22,7 @@ public class BreakableStone extends InteractiveTile {
     public boolean isCorrectItem(Entity entity) {
 
         boolean isCorrectItem = false;
-        if (entity.currentWeapon.getType() == LoadSave.TYPE_SWORD) {
+        if (gp.player.currentWeapon.getType() == LoadSave.TYPE_SWORD) {
             isCorrectItem = true;
         }
 
