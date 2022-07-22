@@ -6,7 +6,7 @@ import utilz.LoadSave;
 
 import entity.Entity;
 
-public class NPC_oldman extends Entity {
+public class NPC_oldman extends Entity implements Speakable{
     private GamePanel gp;
 
     public NPC_oldman(GamePanel gp) {
@@ -31,5 +31,4 @@ public class NPC_oldman extends Entity {
         super.speak();
         gp.ui.npc = this;
     }
-
 }

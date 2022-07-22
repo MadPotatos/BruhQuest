@@ -60,19 +60,11 @@ public abstract class Entity {
 	public int maxLife;
 	public int life;
 	public int mana;
-	public int maxMana;
-	public int ammo;
-	public int level;
-	public int strength;
-	public int endurance;
 	public int attack;
 	public int defense;
-	public int exp;
-	public int nextLevelExp;
-	public int coin;
-	public Item currentWeapon;
-	public Item currentShield;
-	public Item currentScroll;
+
+
+	
 	public Projectile projectile;
 	public final int maxInventorySize = 20;
 	// ITEM ATTRIBUTE
@@ -389,10 +381,10 @@ public abstract class Entity {
 			g2.drawImage(LoadSave.ALERT, screenX, screenY - 60, gp.tileSize, gp.tileSize, null);
 		}
 
-		if (worldX + gp.tileSize > gp.player.worldX - gp.player.screenX &&
-				worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
-				worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
-				worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
+		if (worldX + 5*gp.tileSize > gp.player.worldX - gp.player.screenX &&
+				worldX - 5*gp.tileSize < gp.player.worldX + gp.player.screenX &&
+				worldY + 5*gp.tileSize > gp.player.worldY - gp.player.screenY &&
+				worldY - 5*gp.tileSize < gp.player.worldY + gp.player.screenY) {
 			g2.drawImage(image, screenX, screenY, null);
 			changeAlpha(g2, 1f);
 

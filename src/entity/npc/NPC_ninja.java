@@ -2,12 +2,13 @@ package entity.npc;
 
 import java.util.Random;
 
+import entity.Action;
 import entity.Entity;
 
 import main.GamePanel;
 import utilz.LoadSave;
 
-public class NPC_ninja extends Entity {
+public class NPC_ninja extends Entity implements Speakable, Action{
     private GamePanel gp;
 
     public NPC_ninja(GamePanel gp) {

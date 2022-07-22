@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import entity.Entity;
 import entity.item.*;
+import entity.item.consumable.Coin;
 import main.GamePanel;
 import utilz.Gamestate;
 
@@ -25,21 +26,23 @@ public class UI {
 
     Graphics2D g2;
 
-    public ArrayList<String> message = new ArrayList<String>();
-    public ArrayList<Integer> messageCounter = new ArrayList<Integer>();
+    ArrayList<String> message = new ArrayList<String>();
+    ArrayList<Integer> messageCounter = new ArrayList<Integer>();
 
-    public Menu menuState;
-    public Playing playingState;
-    public Character characterSate;
-    public Option optionState;
-    public Winner winState;
-    public GameOver gameOverState;
-    public Loading loadingState;
-    public Inform informState;
-    public Dialogue dialogueSate;
-    public Trading tradingSate;
-    public PaintUI painUI;
-
+    private Menu menuState;
+    private Playing playingState;
+    private Character characterSate;
+    private Option optionState;
+    private Winner winState;
+    private GameOver gameOverState;
+    private Loading loadingState;
+    private Inform informState;
+    private Dialogue dialogueSate;
+    private Trading tradingSate;
+    private PaintUI painUI;
+    //private PaintUI menuState, playingState,characterSate,optionState,winState,gameOverState,loadingState,informState,dialogueSate,tradingSate;
+    //public ArrayList<PaintUI> panitUI = new ArrayList<>();
+    
     public String currentDialogue = "";
     public int commandNum = 0;
 
@@ -94,43 +97,77 @@ public class UI {
         this.g2 = g2;
         g2.setFont(MineCraft);
         g2.setColor(Color.white);
-        switch (Gamestate.state) {
-            case CHARACTER:
-                characterSate.draw(g2);
-                break;
-            case DIALOUE:
-                dialogueSate.draw(g2);
-                break;
-            case GAMEOVER:
-                gameOverState.draw(g2);
-                break;
-            case INFORM:
-                informState.draw(g2);
-                break;
-            case LOADING:
-                loadingState.draw(g2);
-                break;
-            case MENU:
-                menuState.draw(g2);
-                break;
-            case OPTIONS:
-                optionState.draw(g2);
-                break;
-            case PLAYING:
-                playingState.draw(g2);
-                break;
-            case TRADING:
-                tradingSate.draw(g2);
-                break;
-            case WINNER:
-                winState.draw(g2);
-                break;
-            default:
-                break;
-        }
 
-      
-    }
+        switch (Gamestate.state) {
+        case CHARACTER:
+            characterSate.draw(g2);
+            break;
+        case DIALOUE:
+            dialogueSate.draw(g2);
+            break;
+        case GAMEOVER:
+            gameOverState.draw(g2);
+            break;
+        case INFORM:
+            informState.draw(g2);
+            break;
+        case LOADING:
+            loadingState.draw(g2);
+            break;
+        case MENU:
+            menuState.draw(g2);
+            break;
+        case OPTIONS:
+            optionState.draw(g2);
+            break;
+        case PLAYING:
+            playingState.draw(g2);
+            break;
+        case TRADING:
+            tradingSate.draw(g2);
+            break;
+        case WINNER:
+            winState.draw(g2);
+            break;
+        default:
+            break;
+    	}
+//        switch (Gamestate.state) {
+//        case CHARACTER:
+//        	painUI = new Character(gp);
+//            break;
+//        case DIALOUE:
+//        	painUI = new Dialogue(gp);
+//            break;
+//        case GAMEOVER:
+//        	painUI = new GameOver(gp);
+//            break;
+//        case INFORM:
+//        	painUI =  new Inform(gp);
+//            break;
+//        case LOADING:
+//        	painUI = new Loading(gp);
+//            break;
+//        case MENU:
+//        	painUI = new Menu(gp);
+//            break;
+//        case OPTIONS:
+//        	painUI = new Option(gp);
+//            break;
+//        case PLAYING:
+//        	painUI = new Playing(gp);
+//            break;
+//        case TRADING:
+//        	painUI = new Trading(gp);
+//            break;
+//        case WINNER:
+//        	painUI = new Winner(gp);
+//            break;
+//        default:
+//            break;
+//    }
+//      painUI.draw(g2);
+}
 
     public int getItemIndexonSlot(int slotCol, int slotRow) {
         int itemIndex = slotCol + slotRow * 5;

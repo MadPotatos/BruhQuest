@@ -7,8 +7,8 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import entity.Entity;
-import entity.item.Coin;
 import entity.item.Item;
+import entity.item.consumable.Coin;
 import main.GamePanel;
 import utilz.*;
 
@@ -249,8 +249,8 @@ public class Trading extends PaintUI {
         // Draw player's items
         for (int i = 0; i < entity.inventory.size(); i++) {
             // Equiped item
-            if (entity.inventory.get(i) == entity.currentWeapon
-                    || entity.inventory.get(i) == entity.currentShield) {
+            if (entity.inventory.get(i) == gp.player.currentWeapon
+                    || entity.inventory.get(i) == gp.player.currentShield) {
                 g2.setColor(new Color(255, 148, 24));
                 g2.fillRoundRect(slotX, slotY, gp.tileSize, gp.tileSize, 10, 10);
             }

@@ -1,13 +1,14 @@
-package entity.item;
+package entity.item.consumable;
 
 import java.awt.image.BufferedImage;
 
 import entity.Entity;
+import entity.item.Item;
 import main.GamePanel;
 import utilz.LoadSave;
 import utilz.UtilityTool;
 
-public class Coin extends Item {
+public class Coin extends Item_consumable {
     private GamePanel gp;
 
     public Coin(GamePanel gp) {

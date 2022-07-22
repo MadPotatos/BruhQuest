@@ -5,14 +5,18 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import entity.Entity;
-import entity.item.HealingPotion;
 import entity.item.Item;
-import entity.item.Key;
-import entity.item.weapon.BeginnerSword;
-import entity.item.weapon.Scroll_Fire;
-import entity.item.weapon.Scroll_Ice;
-import entity.item.weapon.Scroll_Rock;
-import entity.item.weapon.WoodenShield;
+import entity.item.consumable.HealingPotion;
+import entity.item.consumable.Key;
+import entity.item.equipment.scroll.Scroll;
+import entity.item.equipment.scroll.Scroll_Fire;
+import entity.item.equipment.scroll.Scroll_Ice;
+import entity.item.equipment.scroll.Scroll_Rock;
+import entity.item.equipment.shield.Shield;
+import entity.item.equipment.shield.WoodenShield;
+import entity.item.equipment.weapon.BeginnerSword;
+import entity.item.equipment.weapon.Weapon;
+import entity.projectile.EnergyBall;
 
 import java.awt.AlphaComposite;
 import main.GamePanel;
@@ -25,6 +29,19 @@ public class Player extends Entity {
 	private KeyHandler keyH;
 	public final int screenX;
 	public final int screenY;
+
+	public int ammo;
+	public int level;
+	public int strength;
+	public int endurance;
+	public int exp;
+	public int nextLevelExp;
+	public int coin;
+	public int maxMana;
+
+	public Weapon currentWeapon;
+	public Shield currentShield;
+	public Scroll currentScroll;
 
 	private int standCounter = 0;
 	private boolean attackCanceled = false;
@@ -78,7 +95,6 @@ public class Player extends Entity {
 		inventory.add(new Key(gp));
 		inventory.add(new HealingPotion(gp));
 		inventory.add(new HealingPotion(gp));
-
 	}
 
 	public void setDefaultValue() {
@@ -379,17 +395,17 @@ public class Player extends Entity {
 		if (itemIndex < inventory.size()) {
 			Item selectedItem = inventory.get(itemIndex);
 			if (selectedItem.getType() == LoadSave.TYPE_AXE || selectedItem.getType() == LoadSave.TYPE_SWORD) {
-				currentWeapon = selectedItem;
+				currentWeapon = (Weapon)selectedItem;
 				attack = getAttack();
 				getPlayerAttackImage();
 			}
 			if (selectedItem.getType() == LoadSave.TYPE_SCROLL) {
-				currentScroll = selectedItem;
-				projectile = selectedItem.getProjectile();
+				currentScroll = (Scroll)selectedItem;
+				projectile = currentScroll.getProjectile();
 			}
 
 			if (selectedItem.getType() == LoadSave.TYPE_SHIELD) {
-				currentShield = selectedItem;
+				currentShield = (Shield)selectedItem;
 				defense = getDefense();
 			}
 			if (selectedItem.getType() == LoadSave.TYPE_CONSUMABLE) {

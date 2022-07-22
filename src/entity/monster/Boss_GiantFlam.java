@@ -3,7 +3,7 @@ package entity.monster;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
-import entity.item.Key;
+import entity.item.consumable.Key;
 import main.GamePanel;
 import utilz.LoadSave;
 import utilz.UtilityTool;
@@ -25,8 +25,8 @@ public class Boss_GiantFlam extends Monster {
         exp = 290;
         solidArea.x = 3;
         solidArea.y = 18;
-        solidArea.width = 60;
-        solidArea.height = 60;
+        solidArea.width = 100;
+        solidArea.height = 100;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
         loadAnimations();
@@ -40,7 +40,7 @@ public class Boss_GiantFlam extends Monster {
         for (int j = 0; j < animations.length; j++) {
             for (int i = 0; i < animations[j].length; i++) {
                 animations[j][i] = imgWalk.getSubimage(i * 50, 0, 50, 50);
-                animations[j][i] = uTool.scaleImage(animations[j][i], 2 * gp.tileSize, 2 * gp.tileSize);
+                animations[j][i] = uTool.scaleImage(animations[j][i], 3 * gp.tileSize, 3 * gp.tileSize);
             }
         }
         setAnimations(animations);
@@ -50,8 +50,6 @@ public class Boss_GiantFlam extends Monster {
     public void damageReaction() {
 
         setActionLockCounter(0);
-        onPath = true;
-
     }
 
     @Override
@@ -62,12 +60,7 @@ public class Boss_GiantFlam extends Monster {
     }
 
     public void setAction() {
-        if (onPath == true) {
-            int goalCol = (gp.player.worldX + gp.player.solidArea.x) / gp.tileSize;
-            int goalRow = (gp.player.worldY + gp.player.solidArea.y) / gp.tileSize;
-            searchPath(goalCol, goalRow);
-
-        } else {
+        
             setActionLockCounter(getActionLockCounter() + 1);
             if (getActionLockCounter() == 120) {
                 Random random = new Random();
@@ -86,7 +79,7 @@ public class Boss_GiantFlam extends Monster {
                 }
                 setActionLockCounter(0);
             }
-        }
+        
 
     }
 

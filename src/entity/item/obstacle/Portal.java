@@ -6,11 +6,8 @@ import entity.item.Item;
 import main.GamePanel;
 import utilz.*;
 
-public class Portal extends Item {
+public class Portal extends Item_obstacle {
     GamePanel gp;
-    Item loot;
-    boolean opened = false;
-
     public Portal(GamePanel gp) {
         super(gp);
         this.gp = gp;

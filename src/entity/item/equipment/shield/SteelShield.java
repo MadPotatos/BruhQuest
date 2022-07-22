@@ -1,10 +1,10 @@
-package entity.item.weapon;
+package entity.item.equipment.shield;
 
-import entity.item.Item;
+
 import main.GamePanel;
 import utilz.LoadSave;
 
-public class SteelShield extends Item {
+public class SteelShield extends Shield {
 
     public SteelShield(GamePanel gp) {
         super(gp);

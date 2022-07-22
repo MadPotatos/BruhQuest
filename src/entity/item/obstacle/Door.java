@@ -1,10 +1,9 @@
 package entity.item.obstacle;
 
-import entity.item.Item;
 import main.GamePanel;
 import utilz.*;
 
-public class Door extends Item {
+public class Door extends Item_obstacle {
     GamePanel gp;
 
     public Door(GamePanel gp) {

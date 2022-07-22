@@ -2,8 +2,8 @@ package entity.monster;
 
 import java.util.Random;
 
+import entity.item.consumable.Coin;
 import main.GamePanel;
-import entity.item.Coin;
 import utilz.LoadSave;
 
 public class Slime extends Monster {
