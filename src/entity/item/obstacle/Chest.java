@@ -4,7 +4,7 @@ import entity.item.Item;
 import main.GamePanel;
 import utilz.*;
 
-public class Chest extends Item {
+public class Chest extends Item_obstacle {
     GamePanel gp;
     Item loot;
     boolean opened = false;

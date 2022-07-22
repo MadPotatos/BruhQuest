@@ -7,8 +7,8 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import entity.Entity;
-import entity.item.Coin;
 import entity.item.Item;
+import entity.item.consumable.Coin;
 import main.GamePanel;
 import utilz.*;
 

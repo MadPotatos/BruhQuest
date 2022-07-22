@@ -1,15 +1,15 @@
 package entity.npc;
 
 import entity.Entity;
-import entity.item.HealingPotion;
-import entity.item.Key;
-import entity.item.weapon.Axe;
-import entity.item.weapon.BeginnerSword;
-import entity.item.weapon.SteelShield;
+import entity.item.consumable.HealingPotion;
+import entity.item.consumable.Key;
+import entity.item.equipment.shield.SteelShield;
+import entity.item.equipment.weapon.Axe;
+import entity.item.equipment.weapon.BeginnerSword;
 import main.GamePanel;
 import utilz.*;
 
-public class NPC_merchant extends Entity {
+public class NPC_merchant extends Entity implements Speakable{
     GamePanel gp;
 
     public NPC_merchant(GamePanel gp) {

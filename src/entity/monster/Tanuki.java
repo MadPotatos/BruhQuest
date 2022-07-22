@@ -2,7 +2,7 @@ package entity.monster;
 
 import java.util.Random;
 
-import entity.item.Mana;
+import entity.item.consumable.Mana;
 import main.GamePanel;
 import utilz.LoadSave;
 

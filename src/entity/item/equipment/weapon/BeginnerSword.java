@@ -1,11 +1,10 @@
-package entity.item.weapon;
+package entity.item.equipment.weapon;
 
-import entity.item.Item;
+
 import main.GamePanel;
 import utilz.LoadSave;
 
-public class BeginnerSword extends Item {
-
+public class BeginnerSword extends Weapon {
     public BeginnerSword(GamePanel gp) {
         super(gp);
         setType(LoadSave.TYPE_SWORD);
@@ -19,5 +18,4 @@ public class BeginnerSword extends Item {
         setPrice(30);
         knockBackPower = 2;
     }
-
 }

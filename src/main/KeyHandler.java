@@ -120,6 +120,7 @@ public class KeyHandler implements KeyListener {
             if (gp.ui.commandNum == 0) {
                 Gamestate.state = Gamestate.PLAYING;
                 gp.retry();
+                //gp.restart();
                 gp.playMusic(13);
             } else if (gp.ui.commandNum == 1) {
                 gp.playMusic(0);

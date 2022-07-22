@@ -1,10 +1,10 @@
-package entity.item.weapon;
+package entity.item.equipment.shield;
 
-import entity.item.Item;
+
 import main.GamePanel;
 import utilz.LoadSave;
 
-public class WoodenShield extends Item {
+public class WoodenShield extends Shield {
 
     public WoodenShield(GamePanel gp) {
         super(gp);

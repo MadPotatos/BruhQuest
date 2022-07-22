@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import entity.Entity;
 import entity.item.*;
+import entity.item.consumable.Coin;
 import main.GamePanel;
 import utilz.Gamestate;
 

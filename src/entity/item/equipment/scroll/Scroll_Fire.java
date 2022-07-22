@@ -1,11 +1,9 @@
-package entity.item.weapon;
-
-import entity.item.Item;
+package entity.item.equipment.scroll;
 import main.GamePanel;
 import utilz.LoadSave;
 import entity.projectile.*;
 
-public class Scroll_Fire extends Item {
+public class Scroll_Fire extends Scroll {
     GamePanel gp;
 
     public Scroll_Fire(GamePanel gp) {

@@ -1,9 +1,12 @@
 package main;
 
 import entity.tile_interactive.*;
-import entity.item.weapon.*;
 import entity.item.obstacle.*;
 import entity.item.*;
+import entity.item.consumable.HealingPotion;
+import entity.item.consumable.Key;
+import entity.item.equipment.*;
+import entity.item.equipment.weapon.Axe;
 import entity.monster.*;
 import entity.npc.*;
 

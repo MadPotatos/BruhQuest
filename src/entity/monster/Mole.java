@@ -2,11 +2,11 @@ package entity.monster;
 
 import java.util.Random;
 
-import entity.item.Heart;
-import entity.item.Mana;
+import entity.item.consumable.Coin;
+import entity.item.consumable.Heart;
+import entity.item.consumable.Mana;
 import entity.projectile.Rock;
 import main.GamePanel;
-import entity.item.Coin;
 import utilz.LoadSave;
 
 public class Mole extends Monster {

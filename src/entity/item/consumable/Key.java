@@ -1,10 +1,11 @@
-package entity.item;
+package entity.item.consumable;
 
 import entity.Entity;
+import entity.item.Item;
 import main.GamePanel;
 import utilz.*;
 
-public class Key extends Item {
+public class Key extends Item_consumable {
     GamePanel gp;
 
     public Key(GamePanel gp) {

@@ -5,9 +5,9 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
-import entity.item.Heart;
 import entity.item.Item;
-import entity.item.Mana;
+import entity.item.consumable.Heart;
+import entity.item.consumable.Mana;
 import main.GamePanel;
 
 public class Playing extends PaintUI {

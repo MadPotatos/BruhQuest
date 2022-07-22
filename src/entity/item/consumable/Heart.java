@@ -1,10 +1,11 @@
-package entity.item;
+package entity.item.consumable;
 
 import entity.Entity;
+import entity.item.Item;
 import main.GamePanel;
 import utilz.LoadSave;
 
-public class Heart extends Item {
+public class Heart extends Item_consumable {
     private GamePanel gp;
 
     public Heart(GamePanel gp) {
