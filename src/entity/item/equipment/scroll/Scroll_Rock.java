@@ -15,6 +15,7 @@ public class Scroll_Rock extends Scroll {
         down1 = LoadSave.setup("/Objects/ScrollRock", gp.tileSize, gp.tileSize);
         setDescription("[" + getName() + "]\n" + "Throw a rock");
         setProjectile(new Rock(gp));
+        setPrice(100);
     }
 
 }

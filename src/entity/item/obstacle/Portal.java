@@ -2,12 +2,12 @@ package entity.item.obstacle;
 
 import java.awt.image.BufferedImage;
 
-import entity.item.Item;
 import main.GamePanel;
 import utilz.*;
 
 public class Portal extends Item_obstacle {
     GamePanel gp;
+
     public Portal(GamePanel gp) {
         super(gp);
         this.gp = gp;

@@ -1,6 +1,5 @@
 package entity.item.equipment.weapon;
 
-import entity.item.Item;
 import main.GamePanel;
 import utilz.LoadSave;
 
@@ -18,5 +17,5 @@ public class Axe extends Weapon {
         setPrice(100);
         knockBackPower = 10;
     }
-    
+
 }

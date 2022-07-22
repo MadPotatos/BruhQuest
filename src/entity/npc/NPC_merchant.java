@@ -3,6 +3,8 @@ package entity.npc;
 import entity.Entity;
 import entity.item.consumable.HealingPotion;
 import entity.item.consumable.Key;
+import entity.item.equipment.scroll.Scroll_Ice;
+import entity.item.equipment.scroll.Scroll_Rock;
 import entity.item.equipment.shield.SteelShield;
 import entity.item.equipment.weapon.Axe;
 import entity.item.equipment.weapon.BeginnerSword;
@@ -36,6 +38,8 @@ public class NPC_merchant extends Entity implements Speakable{
         inventory.add(new Axe(gp));
         inventory.add(new Key(gp));
         inventory.add(new SteelShield(gp));
+		inventory.add(new Scroll_Ice(gp));
+		inventory.add(new Scroll_Rock(gp));
     }
 
     public void speak() {

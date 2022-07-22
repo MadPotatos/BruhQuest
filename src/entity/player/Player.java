@@ -16,7 +16,6 @@ import entity.item.equipment.shield.Shield;
 import entity.item.equipment.shield.WoodenShield;
 import entity.item.equipment.weapon.BeginnerSword;
 import entity.item.equipment.weapon.Weapon;
-import entity.projectile.EnergyBall;
 
 import java.awt.AlphaComposite;
 import main.GamePanel;
@@ -90,8 +89,10 @@ public class Player extends Entity {
 		inventory.add(currentWeapon);
 		inventory.add(currentShield);
 		inventory.add(currentScroll);
-		inventory.add(new Scroll_Ice(gp));
-		inventory.add(new Scroll_Rock(gp));
+//		inventory.add(new Scroll_Ice(gp));
+//		inventory.add(new Scroll_Rock(gp));
+		
+		
 		inventory.add(new Key(gp));
 		inventory.add(new HealingPotion(gp));
 		inventory.add(new HealingPotion(gp));

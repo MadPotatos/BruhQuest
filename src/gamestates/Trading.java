@@ -141,7 +141,9 @@ public class Trading extends PaintUI {
                     gp.player.inventory.add(gp.ui.npc.inventory.get(itemIndex));
                     if (gp.ui.npc.inventory.get(itemIndex).getType() == LoadSave.TYPE_AXE ||
                             gp.ui.npc.inventory.get(itemIndex).getType() == LoadSave.TYPE_SHIELD
-                            || gp.ui.npc.inventory.get(itemIndex).getType() == LoadSave.TYPE_SWORD) {
+                            || gp.ui.npc.inventory.get(itemIndex).getType() == LoadSave.TYPE_SWORD
+                            || gp.ui.npc.inventory.get(itemIndex).getType() == LoadSave.TYPE_SCROLL
+                    		) {
                         gp.ui.npc.inventory.remove(itemIndex);
                     }
 

@@ -14,6 +14,7 @@ public class Scroll_Fire extends Scroll {
         down1 = LoadSave.setup("/Objects/ScrollFire", gp.tileSize, gp.tileSize);
         setDescription("[" + getName() + "]\n" + "Shoot a Fire Shuriken");
         setProjectile(new Shuriken(gp));
+        setPrice(100);
     }
 
 }

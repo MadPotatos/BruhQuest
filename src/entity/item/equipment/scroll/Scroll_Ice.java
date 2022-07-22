@@ -16,6 +16,7 @@ public class Scroll_Ice extends Scroll {
         down1 = LoadSave.setup("/Objects/ScrollIce", gp.tileSize, gp.tileSize);
         setDescription("[" + getName() + "]\n" + "Shoot an ice blast");
         setProjectile(new EnergyBall(gp));
+        setPrice(100);
     }
 
 }
