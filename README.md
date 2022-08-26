@@ -20,4 +20,9 @@ A 2D RPG game made by  Java
 
 - The game ends when the player reach the end of dungeon or run out of health.
 
+# Screenshoot
+![image](https://user-images.githubusercontent.com/83566086/186969222-b721c36a-8b08-4579-91cb-4246c4e18122.png)
+![image](https://user-images.githubusercontent.com/83566086/186969234-e29c0ae8-064f-4ef2-b4ef-ba9e4d27a7e1.png)
+
+
 
