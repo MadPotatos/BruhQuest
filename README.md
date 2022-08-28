@@ -1,4 +1,11 @@
 # BruhQuest
+
+
+![Java: Passing](https://img.shields.io/badge/Firebase-running-orange?style=for-the-badge)
+![Swing: Passing](https://img.shields.io/badge/Swing-running-green?style=for-the-badge)
+![AWS: Passing](https://img.shields.io/badge/AWS-running-yellow?style=for-the-badge)
+
+
 A 2D RPG dungeon crawler game made by  Java
 
 # Guidelines
