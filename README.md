@@ -1,12 +1,24 @@
 # BruhQuest
-A 2D RPG game made by  Java
+A 2D RPG dungeon crawler game made by  Java
 
 # Guidelines
 
+## Getting Started
 
-1. Clone this repository
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-2. Run Main.java
+### The repository
+
+First, you will need to `clone`
+
+```
+$ git clone https://github.com/MadPotatos/BruhQuest.git
+```
+
+### Running
+
+Right-click on project
+Run As > Java Application OR Run Main.java
 
 #  Description
 
@@ -14,11 +26,24 @@ A 2D RPG game made by  Java
 
 - The player plays the role of a knight lost in the land of the east. Your objective is to survive, defeat what stands in your way and return home.
 
-- Use WASD to move , ENTER to attack and interact with NPC.
+##  Map
 
-- Use F to shoot projectile.
+The titlesets are from https://pixel-boy.itch.io/ninja-adventure-asset-pack
 
-- The game ends when the player reach the end of dungeon or run out of health.
+##  Entities
+
+The knight is an animated 2D sprite.
+
+The knight moves freely in the maps with the arrow keys or with "WASD".
+
+
+NPCs are also animated 2D sprites.
+
+You can interact with them by pressing "Enter" key near them
+
+##  Battle 
+
+You can attack by pressing "Enter" key and you can't attack NPCs
 
 # Screenshoot
 ![image](https://user-images.githubusercontent.com/83566086/186969222-b721c36a-8b08-4579-91cb-4246c4e18122.png)
