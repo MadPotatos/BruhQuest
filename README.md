@@ -26,6 +26,10 @@ Run As > Java Application OR Run Main.java
 
 - The player plays the role of a knight lost in the land of the east. Your objective is to survive, defeat what stands in your way and return home.
 
+##  Menu
+
+Press "W" and "S" to move between options
+
 ##  Map
 
 The titlesets are from https://pixel-boy.itch.io/ninja-adventure-asset-pack
